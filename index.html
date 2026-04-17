@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>GeoFilmes • Conflitos Reais</title>
-<meta name="description" content="Filmes, séries e documentários baseados em conflitos reais com contexto geopolítico.">
 
 <style>
 body {
@@ -38,7 +37,6 @@ nav {
   gap: 10px;
   padding: 15px;
   background: #020617;
-  border-bottom: 1px solid #1e293b;
 }
 
 nav button {
@@ -108,6 +106,20 @@ nav button:hover {
   font-weight: bold;
   color: #38bdf8;
 }
+
+/* BOTÃO FLUTUANTE */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: black;
+  padding: 12px 16px;
+  border-radius: 50px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
 </style>
 </head>
 
@@ -116,123 +128,105 @@ nav button:hover {
 <header>
   <h1>🌍 GeoFilmes</h1>
   <p>Histórias reais. Conflitos reais. Sem filtro.</p>
-  <input type="text" id="search" placeholder="Buscar filme ou série...">
+  <input type="text" id="search" placeholder="Buscar...">
 </header>
 
 <nav>
   <button onclick="filterSelection('all')">Todos</button>
   <button onclick="filterSelection('filme')">Filmes</button>
-  <button onclick="filterSelection('documentario')">Documentários</button>
+  <button onclick="filterSelection('documentario')">Docs</button>
   <button onclick="filterSelection('serie')">Séries</button>
   <button onclick="filterSelection('iraque')">Iraque</button>
   <button onclick="filterSelection('siria')">Síria</button>
-  <button onclick="filterSelection('afeganistao')">Afeganistão</button>
-  <button onclick="filterSelection('israel')">Israel/Palestina</button>
+  <button onclick="filterSelection('brasil')">Brasil</button>
 </nav>
 
 <div class="container">
 
-  <!-- 🔥 RANKING -->
-  <h2 class="section-title">🔥 Mais assistidos da semana</h2>
-  <div class="grid">
+<h2 class="section-title">🔥 Mais assistidos da semana</h2>
+<div class="grid">
+  <div class="card"><p class="rank">#1 Fauda</p></div>
+  <div class="card"><p class="rank">#2 Generation Kill</p></div>
+</div>
 
-    <div class="card">
-      <p class="rank">#1 Fauda</p>
-      <p>Operações secretas israelenses em territórios palestinos.</p>
-    </div>
+<h2 class="section-title">🌍 Top por Conflito</h2>
+<div class="grid">
+  <div class="card"><h3>Iraque</h3><p>Generation Kill, Green Zone</p></div>
+  <div class="card"><h3>Síria</h3><p>For Sama</p></div>
+  <div class="card"><h3>Brasil</h3><p>Guerra de Canudos</p></div>
+</div>
 
-    <div class="card">
-      <p class="rank">#2 Generation Kill</p>
-      <p>Invasão do Iraque sob visão de soldados.</p>
-    </div>
+<h2 class="section-title">🎬 Catálogo</h2>
 
-  </div>
+<div class="grid" id="filmGrid">
 
-  <!-- 🌍 TOP POR CONFLITO -->
-  <h2 class="section-title">🌍 Top por Conflito</h2>
-  <div class="grid">
+<div class="card serie israel">
+  <h3>Fauda</h3>
+  <span class="tag">Série</span>
+  <a href="#" class="stream">Netflix</a>
+</div>
 
-    <div class="card">
-      <h3>Iraque</h3>
-      <p>Generation Kill, Green Zone</p>
-    </div>
+<div class="card serie iraque">
+  <h3>Generation Kill</h3>
+  <span class="tag">Série</span>
+  <a href="#" class="stream">HBO</a>
+</div>
 
-    <div class="card">
-      <h3>Síria</h3>
-      <p>For Sama, The Cave</p>
-    </div>
+<div class="card documentario siria">
+  <h3>For Sama</h3>
+  <span class="tag">Documentário</span>
+  <a href="#" class="stream">Prime</a>
+</div>
 
-    <div class="card">
-      <h3>Israel/Palestina</h3>
-      <p>Fauda, Omar</p>
-    </div>
+<div class="card filme brasil">
+  <h3>Guerra de Canudos</h3>
+  <span class="tag">Brasil</span>
+</div>
 
-  </div>
-
-  <!-- 🎬 CATÁLOGO -->
-  <h2 class="section-title">🎬 Catálogo</h2>
-
-  <div class="grid" id="filmGrid">
-
-    <div class="card serie israel">
-      <h3>Fauda</h3>
-      <p>Operações israelenses contra militantes palestinos.</p>
-      <p><strong>Contexto:</strong> conflito Israel–Palestina</p>
-      <p><strong>Perspectiva:</strong> contra-terrorismo</p>
-      <span class="tag">Série</span>
-      <span class="tag">Israel</span>
-      <a href="#" class="stream">Netflix</a>
-    </div>
-
-    <div class="card serie iraque">
-      <h3>Generation Kill</h3>
-      <p>Relato real da invasão do Iraque.</p>
-      <p><strong>Contexto:</strong> Guerra do Iraque (2003)</p>
-      <p><strong>Perspectiva:</strong> soldados em campo</p>
-      <span class="tag">Série</span>
-      <span class="tag">Iraque</span>
-      <a href="#" class="stream">HBO</a>
-    </div>
-
-    <div class="card documentario siria">
-      <h3>For Sama</h3>
-      <p>Guerra na Síria vista por uma mãe.</p>
-      <span class="tag">Documentário</span>
-      <span class="tag">Síria</span>
-      <a href="#" class="stream">Prime Video</a>
-    </div>
-
-    <div class="card filme iraque">
-      <h3>Green Zone</h3>
-      <p>Busca por armas de destruição em massa.</p>
-      <span class="tag">Filme</span>
-      <span class="tag">Iraque</span>
-      <a href="#" class="stream">Netflix</a>
-    </div>
-
-  </div>
+<div class="card filme guerra">
+  <h3>Gladiador</h3>
+  <span class="tag">Histórico</span>
+</div>
 
 </div>
 
+</div>
+
+<!-- PROPAGANDA -->
+<div style="background:#020617;padding:25px;text-align:center;border-top:1px solid #1e293b;">
+
+  <h2 style="color:#38bdf8;">💆‍♂️ Relaxamento Total</h2>
+
+  <p>💰 Apenas R$30/mês<br>🎁 Teste grátis por 6 horas</p>
+
+  <a href="https://wa.me/5597991916621?text=Olá,%20vim%20pelo%20site%20GeoFilmes%20e%20quero%20testar%20o%20serviço"
+     target="_blank"
+     style="display:inline-block;padding:12px 20px;background:#25D366;color:#000;font-weight:bold;border-radius:10px;text-decoration:none;">
+     📲 Falar no WhatsApp
+  </a>
+
+</div>
+
+<!-- BOTÃO FLUTUANTE -->
+<a href="https://wa.me/5597991916621?text=Olá,%20quero%20testar%20o%20serviço"
+   class="whatsapp-float" target="_blank">
+   WhatsApp
+</a>
+
 <script>
-// FILTRO
 function filterSelection(category) {
   let cards = document.getElementsByClassName("card");
-
   for (let i = 0; i < cards.length; i++) {
     cards[i].style.display = "none";
-
     if (category === "all" || cards[i].classList.contains(category)) {
       cards[i].style.display = "block";
     }
   }
 }
 
-// BUSCA
 document.getElementById("search").addEventListener("keyup", function () {
   let input = this.value.toLowerCase();
   let cards = document.getElementsByClassName("card");
-
   for (let i = 0; i < cards.length; i++) {
     let text = cards[i].innerText.toLowerCase();
     cards[i].style.display = text.includes(input) ? "block" : "none";
