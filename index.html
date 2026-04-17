@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GeoFilmes • Conflitos Reais</title>
+<meta name="description" content="Filmes, séries e documentários baseados em conflitos reais com contexto geopolítico.">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+header {
+  background: #020617;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #1e293b;
+}
+
+input {
+  padding: 10px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  background: #020617;
+  border-bottom: 1px solid #1e293b;
+}
+
+nav button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background: #38bdf8;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.section-title {
+  margin-top: 30px;
+  font-size: 22px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #020617;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #1e293b;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #38bdf8;
+}
+
+.tag {
+  font-size: 12px;
+  padding: 4px 8px;
+  background: #1e293b;
+  border-radius: 6px;
+  margin: 3px;
+  display: inline-block;
+}
+
+.stream {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #38bdf8;
+  color: #000;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.rank {
+  font-weight: bold;
+  color: #38bdf8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🌍 GeoFilmes</h1>
+  <p>Histórias reais. Conflitos reais. Sem filtro.</p>
+  <input type="text" id="search" placeholder="Buscar filme ou série...">
+</header>
+
+<nav>
+  <button onclick="filterSelection('all')">Todos</button>
+  <button onclick="filterSelection('filme')">Filmes</button>
+  <button onclick="filterSelection('documentario')">Documentários</button>
+  <button onclick="filterSelection('serie')">Séries</button>
+  <button onclick="filterSelection('iraque')">Iraque</button>
+  <button onclick="filterSelection('siria')">Síria</button>
+  <button onclick="filterSelection('afeganistao')">Afeganistão</button>
+  <button onclick="filterSelection('israel')">Israel/Palestina</button>
+</nav>
+
+<div class="container">
+
+  <!-- 🔥 RANKING -->
+  <h2 class="section-title">🔥 Mais assistidos da semana</h2>
+  <div class="grid">
+
+    <div class="card">
+      <p class="rank">#1 Fauda</p>
+      <p>Operações secretas israelenses em territórios palestinos.</p>
+    </div>
+
+    <div class="card">
+      <p class="rank">#2 Generation Kill</p>
+      <p>Invasão do Iraque sob visão de soldados.</p>
+    </div>
+
+  </div>
+
+  <!-- 🌍 TOP POR CONFLITO -->
+  <h2 class="section-title">🌍 Top por Conflito</h2>
+  <div class="grid">
+
+    <div class="card">
+      <h3>Iraque</h3>
+      <p>Generation Kill, Green Zone</p>
+    </div>
+
+    <div class="card">
+      <h3>Síria</h3>
+      <p>For Sama, The Cave</p>
+    </div>
+
+    <div class="card">
+      <h3>Israel/Palestina</h3>
+      <p>Fauda, Omar</p>
+    </div>
+
+  </div>
+
+  <!-- 🎬 CATÁLOGO -->
+  <h2 class="section-title">🎬 Catálogo</h2>
+
+  <div class="grid" id="filmGrid">
+
+    <div class="card serie israel">
+      <h3>Fauda</h3>
+      <p>Operações israelenses contra militantes palestinos.</p>
+      <p><strong>Contexto:</strong> conflito Israel–Palestina</p>
+      <p><strong>Perspectiva:</strong> contra-terrorismo</p>
+      <span class="tag">Série</span>
+      <span class="tag">Israel</span>
+      <a href="#" class="stream">Netflix</a>
+    </div>
+
+    <div class="card serie iraque">
+      <h3>Generation Kill</h3>
+      <p>Relato real da invasão do Iraque.</p>
+      <p><strong>Contexto:</strong> Guerra do Iraque (2003)</p>
+      <p><strong>Perspectiva:</strong> soldados em campo</p>
+      <span class="tag">Série</span>
+      <span class="tag">Iraque</span>
+      <a href="#" class="stream">HBO</a>
+    </div>
+
+    <div class="card documentario siria">
+      <h3>For Sama</h3>
+      <p>Guerra na Síria vista por uma mãe.</p>
+      <span class="tag">Documentário</span>
+      <span class="tag">Síria</span>
+      <a href="#" class="stream">Prime Video</a>
+    </div>
+
+    <div class="card filme iraque">
+      <h3>Green Zone</h3>
+      <p>Busca por armas de destruição em massa.</p>
+      <span class="tag">Filme</span>
+      <span class="tag">Iraque</span>
+      <a href="#" class="stream">Netflix</a>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+// FILTRO
+function filterSelection(category) {
+  let cards = document.getElementsByClassName("card");
+
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].style.display = "none";
+
+    if (category === "all" || cards[i].classList.contains(category)) {
+      cards[i].style.display = "block";
+    }
+  }
+}
+
+// BUSCA
+document.getElementById("search").addEventListener("keyup", function () {
+  let input = this.value.toLowerCase();
+  let cards = document.getElementsByClassName("card");
+
+  for (let i = 0; i < cards.length; i++) {
+    let text = cards[i].innerText.toLowerCase();
+    cards[i].style.display = text.includes(input) ? "block" : "none";
+  }
+});
+</script>
+
+</body>
+</html>
