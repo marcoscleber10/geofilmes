@@ -3,122 +3,364 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GeoFilmes • Histórias reais. Conflitos reais. Sem filtro. Descubra filmes, séries e documentários sobre conflitos mundiais.">
+<meta property="og:title" content="GeoFilmes • Conflitos Reais">
+<meta property="og:description" content="Catálogo curado de produções sobre guerras e conflitos reais.">
+<meta property="og:type" content="website">
 
 <title>GeoFilmes • Conflitos Reais</title>
 
 <style>
+/* ===== RESET & BASE ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
   background: #0f172a;
   color: #e2e8f0;
+  line-height: 1.5;
 }
 
+/* ===== HEADER ===== */
 header {
   background: #020617;
   padding: 20px;
   text-align: center;
   border-bottom: 1px solid #1e293b;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-
-input {
-  padding: 10px;
+header h1 { margin: 0 0 8px; font-size: 28px; }
+header p { margin: 0 0 12px; opacity: 0.9; }
+#search {
+  padding: 12px 16px;
   width: 90%;
-  max-width: 400px;
-  border-radius: 8px;
-  border: none;
-  margin-top: 10px;
+  max-width: 450px;
+  border-radius: 10px;
+  border: 2px solid #1e293b;
+  background: #1e293b;
+  color: #e2e8f0;
+  font-size: 14px;
+  transition: border-color 0.3s;
 }
+#search:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+#search::placeholder { color: #94a3b8; }
 
+/* ===== NAV ===== */
 nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-  padding: 15px;
+  gap: 8px;
+  padding: 12px 15px;
   background: #020617;
+  border-bottom: 1px solid #1e293b;
+  position: sticky;
+  top: 110px;
+  z-index: 99;
 }
-
 nav button {
-  padding: 8px 12px;
+  padding: 8px 14px;
   border-radius: 8px;
   border: none;
   background: #1e293b;
   color: white;
   cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
 }
-
-nav button:hover {
+nav button:hover, nav button.active {
   background: #38bdf8;
+  color: #000;
+  font-weight: 600;
+}
+nav button:focus {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
 }
 
+/* ===== CONTAINER ===== */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
-
 .section-title {
-  margin-top: 30px;
-  font-size: 22px;
+  margin: 30px 0 15px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #1e293b;
+  margin-left: 15px;
 }
 
+/* ===== GRID & CARDS ===== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
-
 .card {
   background: #020617;
-  padding: 15px;
+  padding: 16px;
   border-radius: 12px;
   border: 1px solid #1e293b;
-  transition: 0.3s;
+  transition: transform 0.3s, border-color 0.3s;
+  position: relative;
 }
-
 .card:hover {
   transform: translateY(-5px);
   border-color: #38bdf8;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.card.hidden { display: none !important; }
+
+/* Poster placeholder */
+.card-poster {
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #38bdf8;
+  overflow: hidden;
+  position: relative;
+}
+.card-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none; /* Ativar quando tiver imagens reais */
+}
+.card-poster .placeholder-text {
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
 }
 
-.tag {
+/* Card content */
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.3;
+}
+.card-meta {
+  display: flex;
+  gap: 10px;
   font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.card-meta .rating {
+  color: #fbbf24;
+  font-weight: bold;
+}
+.card-desc {
+  font-size: 13px;
+  color: #cbd5e1;
+  margin: 10px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 48px;
+}
+.card-tags {
+  margin: 10px 0;
+}
+.tag {
+  font-size: 11px;
   padding: 4px 8px;
   background: #1e293b;
   border-radius: 6px;
   margin: 3px;
   display: inline-block;
+  color: #e2e8f0;
 }
-
+.tag.streaming {
+  background: #38bdf8;
+  color: #000;
+  font-weight: 600;
+}
 .stream {
   display: inline-block;
   margin-top: 10px;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 6px;
   background: #38bdf8;
   color: #000;
   text-decoration: none;
   font-size: 12px;
+  font-weight: 600;
+  transition: background 0.2s;
 }
+.stream:hover { background: #7dd3fc; }
 
+/* Rank badge */
 .rank {
   font-weight: bold;
   color: #38bdf8;
+  font-size: 14px;
+  margin: 0;
 }
 
-/* BOTÃO FLUTUANTE */
+/* Similar movies section inside card */
+.card-similar {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #1e293b;
+  font-size: 12px;
+}
+.card-similar h4 {
+  margin: 0 0 6px;
+  color: #94a3b8;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.card-similar .similar-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.card-similar .similar-item {
+  background: #0f172a;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.card-similar .similar-item:hover {
+  background: #38bdf8;
+  color: #000;
+}
+
+/* Empty state */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: #94a3b8;
+}
+.empty-state .icon { font-size: 48px; margin-bottom: 10px; }
+.empty-state p { margin: 0; }
+
+/* ===== PROMO SECTION ===== */
+.promo-section {
+  background: #020617;
+  padding: 25px;
+  text-align: center;
+  border-top: 1px solid #1e293b;
+  margin-top: 40px;
+  border-radius: 12px;
+}
+.promo-section h2 { color: #38bdf8; margin: 0 0 12px; }
+.promo-section p { margin: 8px 0; opacity: 0.9; }
+.promo-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: #25D366;
+  color: #000;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.promo-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* ===== FLOATING WHATSAPP ===== */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background: #25D366;
   color: black;
-  padding: 12px 16px;
+  padding: 12px 18px;
   border-radius: 50px;
   font-weight: bold;
   text-decoration: none;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s;
+  z-index: 1000;
+}
+.whatsapp-float:hover {
+  transform: scale(1.05);
+}
+.whatsapp-float:focus {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+/* ===== TOOLTIP ===== */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip .tooltip-text {
+  visibility: hidden;
+  width: 220px;
+  background: #1e293b;
+  color: #e2e8f0;
+  text-align: center;
+  border-radius: 8px;
+  padding: 10px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  line-height: 1.4;
+  pointer-events: none;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  header h1 { font-size: 24px; }
+  nav { top: 95px; }
+  .card-poster { height: 140px; }
+  .card-desc { -webkit-line-clamp: 2; min-height: 36px; }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
 }
 </style>
 </head>
@@ -128,110 +370,486 @@ nav button:hover {
 <header>
   <h1>🌍 GeoFilmes</h1>
   <p>Histórias reais. Conflitos reais. Sem filtro.</p>
-  <input type="text" id="search" placeholder="Buscar...">
+  <input type="text" id="search" placeholder="Buscar por título, conflito, tag..." aria-label="Buscar filmes">
 </header>
 
-<nav>
-  <button onclick="filterSelection('all')">Todos</button>
-  <button onclick="filterSelection('filme')">Filmes</button>
-  <button onclick="filterSelection('documentario')">Docs</button>
-  <button onclick="filterSelection('serie')">Séries</button>
-  <button onclick="filterSelection('iraque')">Iraque</button>
-  <button onclick="filterSelection('siria')">Síria</button>
-  <button onclick="filterSelection('brasil')">Brasil</button>
+<nav role="navigation" aria-label="Filtros de categoria">
+  <button onclick="filterSelection('all')" class="active" aria-pressed="true">Todos</button>
+  <button onclick="filterSelection('filme')" aria-pressed="false">Filmes</button>
+  <button onclick="filterSelection('documentario')" aria-pressed="false">Docs</button>
+  <button onclick="filterSelection('serie')" aria-pressed="false">Séries</button>
+  <button onclick="filterSelection('iraque')" aria-pressed="false">Iraque</button>
+  <button onclick="filterSelection('siria')" aria-pressed="false">Síria</button>
+  <button onclick="filterSelection('brasil')" aria-pressed="false">Brasil</button>
 </nav>
 
 <div class="container">
 
-<h2 class="section-title">🔥 Mais assistidos da semana</h2>
-<div class="grid">
-  <div class="card"><p class="rank">#1 Fauda</p></div>
-  <div class="card"><p class="rank">#2 Generation Kill</p></div>
+  <!-- 🔥 Mais assistidos -->
+  <h2 class="section-title">🔥 Mais assistidos da semana</h2>
+  <div class="grid">
+    
+    <div class="card serie israel" data-tags="israel ação espionagem conflito-real 2010s" data-year="2015" data-rating="8.4" data-similar="generation-kill,zero-dark-thirty">
+      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <p class="rank">#1 Fauda</p>
+      <div class="card-meta">
+        <span class="rating">⭐ 8.4</span>
+        <span>•</span>
+        <span>2015</span>
+        <span>•</span>
+        <span>Série</span>
+      </div>
+      <p class="card-desc">Equipe de forças especiais israelense opera disfarçada em território palestino. Ação intensa baseada em relatos reais do criador da série.</p>
+      <div class="card-tags">
+        <span class="tag">Ação</span>
+        <span class="tag">Espionagem</span>
+        <span class="tag">Oriente Médio</span>
+      </div>
+      <a href="#" class="stream tooltip" aria-label="Assistir na Netflix">
+        Netflix
+        <span class="tooltip-text">Disponível na Netflix • Dublado e legendado</span>
+      </a>
+      <div class="card-similar" id="similar-fauda">
+        <h4>Quem viu também gostou:</h4>
+        <div class="similar-list"></div>
+      </div>
+    </div>
+
+    <div class="card serie iraque" data-tags="iraque guerra militar 2000s baseado-em-fatos" data-year="2008" data-rating="8.6" data-similar="fauda,green-zone,hurt-locker">
+      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <p class="rank">#2 Generation Kill</p>
+      <div class="card-meta">
+        <span class="rating">⭐ 8.6</span>
+        <span>•</span>
+        <span>2008</span>
+        <span>•</span>
+        <span>Série</span>
+      </div>
+      <p class="card-desc">Jornalista embarca com fuzileiros navais na invasão do Iraque em 2003. Retrato cru e realista da guerra moderna.</p>
+      <div class="card-tags">
+        <span class="tag">Guerra</span>
+        <span class="tag">Militar</span>
+        <span class="tag">Baseado em fatos</span>
+      </div>
+      <a href="#" class="stream tooltip" aria-label="Assistir na HBO">
+        HBO
+        <span class="tooltip-text">Disponível na HBO Max • Legendado</span>
+      </a>
+      <div class="card-similar" id="similar-generation-kill">
+        <h4>Quem viu também gostou:</h4>
+        <div class="similar-list"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 🌍 Top por Conflito -->
+  <h2 class="section-title">🌍 Top por Conflito</h2>
+  <div class="grid">
+    
+    <div class="card" data-tags="iraque guerra">
+      <div class="card-poster"><span class="placeholder-text">🇮🇶</span></div>
+      <h3>Iraque</h3>
+      <p class="card-desc">Produções sobre a guerra do Iraque, ocupação e consequências políticas.</p>
+      <div class="card-tags">
+        <span class="tag">Generation Kill</span>
+        <span class="tag">Green Zone</span>
+        <span class="tag">The Hurt Locker</span>
+      </div>
+    </div>
+
+    <div class="card" data-tags="siria guerra civil documentario">
+      <div class="card-poster"><span class="placeholder-text">🇸🇾</span></div>
+      <h3>Síria</h3>
+      <p class="card-desc">Documentários e ficções sobre a guerra civil síria e o impacto humanitário.</p>
+      <div class="card-tags">
+        <span class="tag">For Sama</span>
+        <span class="tag">Last Men in Aleppo</span>
+      </div>
+    </div>
+
+    <div class="card" data-tags="brasil historia conflito-social">
+      <div class="card-poster"><span class="placeholder-text">🇧🇷</span></div>
+      <h3>Brasil</h3>
+      <p class="card-desc">Conflitos históricos e sociais brasileiros retratados no cinema.</p>
+      <div class="card-tags">
+        <span class="tag">Guerra de Canudos</span>
+        <span class="tag">Batismo de Sangue</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 🎬 Catálogo Principal -->
+  <h2 class="section-title">🎬 Catálogo Completo</h2>
+  <div class="grid" id="filmGrid">
+
+    <!-- Fauda (mantido + enriquecido) -->
+    <div class="card serie israel" data-id="fauda-01" data-tags="israel ação espionagem conflito-real 2010s" data-year="2015" data-rating="8.4" data-similar="generation-kill,zero-dark-thirty">
+      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <h3>Fauda</h3>
+      <div class="card-meta">
+        <span class="rating">⭐ 8.4</span>
+        <span>•</span>
+        <span>2015</span>
+        <span>•</span>
+        <span>Série</span>
+      </div>
+      <p class="card-desc">Equipe de forças especiais israelense opera disfarçada em território palestino. Ação intensa baseada em relatos reais do criador da série.</p>
+      <div class="card-tags">
+        <span class="tag">Série</span>
+        <span class="tag">Ação</span>
+        <span class="tag">Oriente Médio</span>
+      </div>
+      <a href="#" class="stream">Netflix</a>
+      <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
+    </div>
+
+    <!-- Generation Kill (mantido + enriquecido) -->
+    <div class="card serie iraque" data-id="gen-kill-01" data-tags="iraque guerra militar 2000s baseado-em-fatos" data-year="2008" data-rating="8.6" data-similar="fauda,green-zone,hurt-locker">
+      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <h3>Generation Kill</h3>
+      <div class="card-meta">
+        <span class="rating">⭐ 8.6</span>
+        <span>•</span>
+        <span>2008</span>
+        <span>•</span>
+        <span>Série</span>
+      </div>
+      <p class="card-desc">Jornalista embarca com fuzileiros navais na invasão do Iraque em 2003. Retrato cru e realista da guerra moderna.</p>
+      <div class="card-tags">
+        <span class="tag">Série</span>
+        <span class="tag">Guerra</span>
+        <span class="tag">HBO</span>
+      </div>
+      <a href="#" class="stream">HBO</a>
+      <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
+    </div>
+
+    <!-- For Sama (mantido + enriquecido) -->
+    <div class="card documentario siria" data-id="for-sama-01" data-tags="siria documentario guerra-civil premio 2010s" data-year="2019" data-rating="8.5" data-similar="last-men-aleppo,caves-of-forgetting">
+      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <h3>For Sama</h3>
+      <div class="card-meta">
+        <span class="rating">⭐ 8.5</span>
+        <span>•</span>
+        <span>2019</span>
+        <span>•</span>
+        <span>Documentário</span>
+      </div>
+      <p class="card-desc">Carta de amor de uma mãe à filha, filmada durante o cerco de Aleppo. Vencedor do BAFTA e indicado ao Oscar.</p>
+      <div class="card-tags">
+        <span class="tag">Documentário</span>
+        <span class="tag">Síria</span>
+        <span class="tag">Premiado</span>
+      </div>
+      <a href="#" class="stream">Prime</a>
+      <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
+    </div>
+
+    <!-- Guerra de Canudos (mantido + enriquecido) -->
+    <div class="card filme brasil" data-id="canudos-01" data-tags="brasil historia conflito-social 1990s baseado-em-livro" data-year="1997" data-rating="7.2" data-similar="batismo-sangue,abraco-partido">
+      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <h3>Guerra de Canudos</h3>
+      <div class="card-meta">
+        <span class="rating">⭐ 7.2</span>
+        <span>•</span>
+        <span>1997</span>
+        <span>•</span>
+        <span>Filme</span>
+      </div>
+      <p class="card-desc">Adaptação do clássico de Euclides da Cunha sobre o conflito no sertão baiano. Produção épica brasileira.</p>
+      <div class="card-tags">
+        <span class="tag">Brasil</span>
+        <span class="tag">Histórico</span>
+        <span class="tag">Drama</span>
+      </div>
+      <!-- Sem streaming definido, mantido como original -->
+      <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
+    </div>
+
+    <!-- Gladiador (mantido + enriquecido) -->
+    <div class="card filme guerra" data-id="gladiator-01" data-tags="roma historico epico ação 2000s premio" data-year="2000" data-rating="8.5" data-similar="troia,300,kingdom-of-heaven">
+      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <h3>Gladiador</h3>
+      <div class="card-meta">
+        <span class="rating">⭐ 8.5</span>
+        <span>•</span>
+        <span>2000</span>
+        <span>•</span>
+        <span>Filme</span>
+      </div>
+      <p class="card-desc">General romano busca vingança após traição imperial. Épico vencedor de 5 Oscars, incluindo Melhor Filme.</p>
+      <div class="card-tags">
+        <span class="tag">Histórico</span>
+        <span class="tag">Épico</span>
+        <span class="tag">Ação</span>
+      </div>
+      <!-- Sem streaming definido, mantido como original -->
+      <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
+    </div>
+
+    <!-- NOVOS: Adicionados para demonstrar sistema de recomendação -->
+    <div class="card filme iraque" data-id="green-zone-01" data-tags="iraque guerra ação 2010s baseado-em-fatos" data-year="2010" data-rating="7.0" data-similar="generation-kill,hurt-locker,body-of-lies">
+      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <h3>Green Zone</h3>
+      <div class="card-meta">
+        <span class="rating">⭐ 7.0</span>
+        <span>•</span>
+        <span>2010</span>
+        <span>•</span>
+        <span>Filme</span>
+      </div>
+      <p class="card-desc">Oficial americano descobre conspiração durante busca por armas no Iraque. Thriller de ação com Matt Damon.</p>
+      <div class="card-tags">
+        <span class="tag">Ação</span>
+        <span class="tag">Iraque</span>
+        <span class="tag">Thriller</span>
+      </div>
+      <a href="#" class="stream">Netflix</a>
+      <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
+    </div>
+
+    <div class="card documentario brasil" data-id="batismo-01" data-tags="brasil ditadura documentario resistencia 2000s" data-year="2007" data-rating="7.8" data-similar="abraco-partido,juiz">
+      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <h3>Batismo de Sangue</h3>
+      <div class="card-meta">
+        <span class="rating">⭐ 7.8</span>
+        <span>•</span>
+        <span>2007</span>
+        <span>•</span>
+        <span>Filme</span>
+      </div>
+      <p class="card-desc">Freis dominicanos que resistiram à ditadura militar brasileira. Baseado em fatos reais, com Daniel de Oliveira.</p>
+      <div class="card-tags">
+        <span class="tag">Brasil</span>
+        <span class="tag">Ditadura</span>
+        <span class="tag">Drama</span>
+      </div>
+      <a href="#" class="stream">Prime</a>
+      <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
+    </div>
+
+    <div class="card filme siria" data-id="last-men-01" data-tags="siria documentario guerra-civil 2010s premio" data-year="2018" data-rating="8.1" data-similar="for-sama,caves-of-forgetting">
+      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <h3>Last Men in Aleppo</h3>
+      <div class="card-meta">
+        <span class="rating">⭐ 8.1</span>
+        <span>•</span>
+        <span>2018</span>
+        <span>•</span>
+        <span>Documentário</span>
+      </div>
+      <p class="card-desc">Voluntários do Capacetes Brancos resgatam civis em Aleppo sob bombardeios. Indicado ao Oscar de Documentário.</p>
+      <div class="card-tags">
+        <span class="tag">Documentário</span>
+        <span class="tag">Síria</span>
+        <span class="tag">Heroísmo</span>
+      </div>
+      <a href="#" class="stream">Prime</a>
+      <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
+    </div>
+
+  </div>
+
+  <!-- Estado vazio (oculto por padrão) -->
+  <div id="emptyState" class="empty-state hidden" role="status" aria-live="polite">
+    <div class="icon">🔍</div>
+    <p><strong>Nada encontrado</strong></p>
+    <p style="font-size:13px;margin-top:5px">Tente outros termos ou remova os filtros.</p>
+  </div>
+
 </div>
 
-<h2 class="section-title">🌍 Top por Conflito</h2>
-<div class="grid">
-  <div class="card"><h3>Iraque</h3><p>Generation Kill, Green Zone</p></div>
-  <div class="card"><h3>Síria</h3><p>For Sama</p></div>
-  <div class="card"><h3>Brasil</h3><p>Guerra de Canudos</p></div>
-</div>
-
-<h2 class="section-title">🎬 Catálogo</h2>
-
-<div class="grid" id="filmGrid">
-
-<div class="card serie israel">
-  <h3>Fauda</h3>
-  <span class="tag">Série</span>
-  <a href="#" class="stream">Netflix</a>
-</div>
-
-<div class="card serie iraque">
-  <h3>Generation Kill</h3>
-  <span class="tag">Série</span>
-  <a href="#" class="stream">HBO</a>
-</div>
-
-<div class="card documentario siria">
-  <h3>For Sama</h3>
-  <span class="tag">Documentário</span>
-  <a href="#" class="stream">Prime</a>
-</div>
-
-<div class="card filme brasil">
-  <h3>Guerra de Canudos</h3>
-  <span class="tag">Brasil</span>
-</div>
-
-<div class="card filme guerra">
-  <h3>Gladiador</h3>
-  <span class="tag">Histórico</span>
-</div>
-
-</div>
-
-</div>
-
-<!-- PROPAGANDA -->
-<div style="background:#020617;padding:25px;text-align:center;border-top:1px solid #1e293b;">
-
+<!-- PROPAGANDA / PROMO -->
+<div class="promo-section">
   <h2 style="color:#38bdf8;">💆‍♂️ Relaxamento Total</h2>
-
   <p>💰 Apenas R$30/mês<br>🎁 Teste grátis por 6 horas</p>
-
   <a href="https://wa.me/5597991916621?text=Olá,%20vim%20pelo%20site%20GeoFilmes%20e%20quero%20testar%20o%20serviço"
-     target="_blank"
-     style="display:inline-block;padding:12px 20px;background:#25D366;color:#000;font-weight:bold;border-radius:10px;text-decoration:none;">
+     target="_blank" rel="noopener noreferrer"
+     class="promo-btn" aria-label="Falar no WhatsApp para testar o serviço">
      📲 Falar no WhatsApp
   </a>
-
 </div>
 
-<!-- BOTÃO FLUTUANTE -->
+<!-- BOTÃO FLUTUANTE WHATSAPP -->
 <a href="https://wa.me/5597991916621?text=Olá,%20quero%20testar%20o%20serviço"
-   class="whatsapp-float" target="_blank">
-   WhatsApp
+   class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp">
+   💬 WhatsApp
 </a>
 
+<!-- SCRIPT PRINCIPAL -->
 <script>
+// ===== DADOS CENTRALIZADOS (fácil manutenção) =====
+const catalogData = {
+  "fauda-01": { titulo: "Fauda", tags: ["israel","ação","espionagem","conflito-real","2010s"] },
+  "generation-kill": { titulo: "Generation Kill", tags: ["iraque","guerra","militar","2000s","baseado-em-fatos"] },
+  "for-sama-01": { titulo: "For Sama", tags: ["siria","documentario","guerra-civil","premio","2010s"] },
+  "canudos-01": { titulo: "Guerra de Canudos", tags: ["brasil","historia","conflito-social","1990s"] },
+  "gladiator-01": { titulo: "Gladiador", tags: ["roma","historico","epico","ação","2000s"] },
+  "green-zone-01": { titulo: "Green Zone", tags: ["iraque","guerra","ação","2010s"] },
+  "batismo-01": { titulo: "Batismo de Sangue", tags: ["brasil","ditadura","documentario","2000s"] },
+  "last-men-01": { titulo: "Last Men in Aleppo", tags: ["siria","documentario","guerra-civil","2010s"] },
+  "zero-dark-thirty": { titulo: "A Noite Mais Escura", tags: ["ação","espionagem","2010s"] },
+  "hurt-locker": { titulo: "Guerra ao Terror", tags: ["iraque","guerra","premio","2000s"] },
+  "troia": { titulo: "Troia", tags: ["historico","epico","ação"] },
+  "300": { titulo: "300", tags: ["historico","epico","ação"] },
+  "kingdom-of-heaven": { titulo: "Cruzada", tags: ["historico","epico","guerra"] },
+  "body-of-lies": { titulo: "Corpo de Mentiras", tags: ["iraque","espionagem","ação"] },
+  "abraco-partido": { titulo: "Abraço Partido", tags: ["brasil","drama","social"] },
+  "juiz": { titulo: "O Juiz", tags: ["brasil","ditadura","documentario"] },
+  "caves-of-forgetting": { titulo: "As Cavernas do Esquecimento", tags: ["siria","documentario","guerra"] }
+};
+
+// ===== FUNÇÕES DE UTILIDADE =====
+// Normaliza texto para busca (remove acentos, minúsculas)
+function normalizeText(text) {
+  return text.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .trim();
+}
+
+// ===== FILTRO POR CATEGORIA =====
 function filterSelection(category) {
-  let cards = document.getElementsByClassName("card");
-  for (let i = 0; i < cards.length; i++) {
-    cards[i].style.display = "none";
-    if (category === "all" || cards[i].classList.contains(category)) {
-      cards[i].style.display = "block";
+  // Atualiza botões ativos
+  document.querySelectorAll('nav button').forEach(btn => {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-pressed', 'false');
+  });
+  event.target.classList.add('active');
+  event.target.setAttribute('aria-pressed', 'true');
+
+  const cards = document.querySelectorAll('.card');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    // Cards de "Top por Conflito" não têm data-tags, sempre mostram
+    if (!card.dataset.tags) {
+      card.classList.remove('hidden');
+      visibleCount++;
+      return;
     }
+
+    const cardTags = card.dataset.tags.split(' ');
+    const matches = category === 'all' || cardTags.includes(category) || card.classList.contains(category);
+    
+    if (matches) {
+      card.classList.remove('hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+
+  // Mostra/oculta estado vazio
+  toggleEmptyState(visibleCount);
+}
+
+// ===== BUSCA EM TEMPO REAL =====
+document.getElementById('search').addEventListener('keyup', function() {
+  const query = normalizeText(this.value);
+  const cards = document.querySelectorAll('#filmGrid .card');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    if (!card.dataset.id) return; // Pula cards que não são do catálogo principal
+
+    const searchable = normalizeText(
+      card.querySelector('h3')?.textContent + ' ' +
+      card.querySelector('.card-desc')?.textContent + ' ' +
+      card.dataset.tags + ' ' +
+      card.dataset.year
+    );
+
+    if (searchable.includes(query)) {
+      card.classList.remove('hidden');
+      visibleCount++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+
+  toggleEmptyState(visibleCount);
+});
+
+// ===== ESTADO VAZIO =====
+function toggleEmptyState(count) {
+  const empty = document.getElementById('emptyState');
+  const grid = document.getElementById('filmGrid');
+  
+  if (count === 0) {
+    empty.classList.remove('hidden');
+    grid.style.display = 'none';
+  } else {
+    empty.classList.add('hidden');
+    grid.style.display = 'grid';
   }
 }
 
-document.getElementById("search").addEventListener("keyup", function () {
-  let input = this.value.toLowerCase();
-  let cards = document.getElementsByClassName("card");
-  for (let i = 0; i < cards.length; i++) {
-    let text = cards[i].innerText.toLowerCase();
-    cards[i].style.display = text.includes(input) ? "block" : "none";
-  }
+// ===== SISTEMA DE RECOMENDAÇÃO SIMPLES =====
+function loadSimilarMovies() {
+  document.querySelectorAll('.card[data-id]').forEach(card => {
+    const similarContainer = card.querySelector('.similar-list');
+    if (!similarContainer) return;
+
+    const similarIds = (card.dataset.similar || '').split(',').filter(Boolean);
+    
+    similarIds.slice(0, 3).forEach(simId => {
+      const simData = catalogData[simId];
+      if (simData) {
+        const btn = document.createElement('span');
+        btn.className = 'similar-item';
+        btn.textContent = simData.titulo;
+        btn.title = `Ver ${simData.titulo}`;
+        btn.onclick = (e) => {
+          e.preventDefault();
+          // Destaca o card similar (scroll suave)
+          const target = document.querySelector(`.card[data-id="${simId}"]`);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            target.style.borderColor = '#fbbf24';
+            setTimeout(() => target.style.borderColor = '', 2000);
+          }
+        };
+        similarContainer.appendChild(btn);
+      }
+    });
+
+    if (similarContainer.children.length === 0) {
+      similarContainer.parentElement.style.display = 'none';
+    }
+  });
+}
+
+// ===== INICIALIZAÇÃO =====
+document.addEventListener('DOMContentLoaded', () => {
+  // Carrega recomendações
+  loadSimilarMovies();
+  
+  // Acessibilidade: navegação por teclado nos filtros
+  document.querySelectorAll('nav button').forEach(btn => {
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+  });
+
+  // Feedback visual no search
+  const searchInput = document.getElementById('search');
+  searchInput.addEventListener('focus', () => {
+    searchInput.placeholder = 'Ex: Iraque, documentário, 2010s...';
+  });
+  searchInput.addEventListener('blur', () => {
+    searchInput.placeholder = 'Buscar por título, conflito, tag...';
+  });
 });
+
+// ===== SERVICE WORKER PLACEHOLDER (para PWA futuro) =====
+// if ('serviceWorker' in navigator) {
+//   navigator.serviceWorker.register('/sw.js').catch(console.error);
+// }
 </script>
 
 </body>
