@@ -558,7 +558,7 @@ nav button:focus {
   color: #94a3b8;
 }
 .loading::after {
-  content: "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏";
+  content: "⠋⠙⠹⠸⠼⠦⠧⠏";
   animation: spin 1s steps(10) infinite;
   display: inline-block;
   margin-left: 10px;
@@ -619,11 +619,11 @@ footer a { color: #38bdf8; text-decoration: none; }
   <button onclick="filterSelection('siria')" aria-pressed="false">Síria</button>
   <button onclick="filterSelection('brasil')" aria-pressed="false">Brasil</button>
   <!-- NOVOS BOTÕES PRO MAX -->
-  <button onclick="loadTrending()">🔥 Trending TMDB</button>
-  <button onclick="loadGenre(28)">💣 Ação</button>
-  <button onclick="loadGenre(18)">🎭 Drama</button>
-  <button onclick="loadGenre(99)">📚 Documentário</button>
-  <button onclick="showFavorites()">❤️ Favoritos</button>
+  <button id="btnTrending" onclick="loadTrending()">🔥 Trending TMDB</button>
+  <button id="btnAcao" onclick="loadGenre(28)">💣 Ação</button>
+  <button id="btnDrama" onclick="loadGenre(18)">🎭 Drama</button>
+  <button id="btnDoc" onclick="loadGenre(99)">📚 Documentário</button>
+  <button id="btnFav" onclick="showFavorites()">❤️ Favoritos</button>
 </nav>
 
 <div class="container">
@@ -712,7 +712,7 @@ footer a { color: #38bdf8; text-decoration: none; }
     </div>
 
     <div class="card" data-tags="siria guerra civil documentario">
-      <div class="card-poster"><span class="placeholder-text">🇸🇾</span></div>
+      <div class="card-poster"><span class="placeholder-text">🇸</span></div>
       <h3>Síria</h3>
       <p class="card-desc">Documentários e ficções sobre a guerra civil síria e o impacto humanitário.</p>
       <div class="card-tags">
@@ -990,11 +990,11 @@ footer a { color: #38bdf8; text-decoration: none; }
 <!-- SCRIPT PRINCIPAL COMPLETO -->
 <script>
 // ===== CONFIGURAÇÃO DO DISTRIBUIDOR =====
-// ⚠️ CORREÇÃO BUG #1: API Key deve ser substituída pelo usuário
+// ✅ API KEY TMDB CONFIGURADA - IMAGENS E CATÁLOGO DINÂMICO ATIVOS
 const CONFIG = {
   whatsapp: "5597991916621",
   mensagemPadrao: "Olá, vim pelo site GeoFilmes PRO MAX e quero saber sobre a Atmos IPTV",
-  tmdbApiKey: "", // ← COLOQUE SUA CHAVE TMDB AQUI: https://www.themoviedb.org/settings/api
+  tmdbApiKey: "c77b200833d76b28873f2b4d56716211",
   tmdbBase: "https://api.themoviedb.org/3",
   tmdbImg: "https://image.tmdb.org/t/p/w500",
   fallbackToCurated: true
@@ -1045,7 +1045,6 @@ function showLoading(s) {
 
 // ===== CORREÇÃO BUG #2: Função para carregar posters dos cards curados =====
 async function loadCuratedPoster(cardId, title) {
-  // Só tenta carregar se API key estiver configurada
   if (!CONFIG.tmdbApiKey || CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI" || CONFIG.tmdbApiKey.trim() === "") return;
   
   try {
@@ -1068,7 +1067,6 @@ async function loadCuratedPoster(cardId, title) {
     }
   } catch (e) {
     console.warn(`Poster para "${title}":`, e);
-    // Fallback já tratado pelo onerror no HTML
   }
 }
 
@@ -1257,7 +1255,6 @@ function closeDetails() {
   if (dv && dv.classList.contains("active")) {
     dv.classList.remove("active");
     document.body.style.overflow = "";
-    // Remove foco de qualquer input para evitar conflitos
     if (document.activeElement && document.activeElement.blur) {
       document.activeElement.blur();
     }
@@ -1270,7 +1267,6 @@ if (dvEl) {
 }
 
 // ===== CORREÇÃO BUG #3: ESC fecha modal em qualquer contexto =====
-// Usar window.addEventListener em vez de document para capturar ESC mesmo com foco em input
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape" || e.key === "Esc") {
     closeDetails();
@@ -1298,11 +1294,10 @@ function loadDetailsRecommendations(id, it) {
   }
 }
 
-// ===== TMDB API INTEGRATION (COM FALLBACK SEGURO) =====
+// ===== TMDB API INTEGRATION (COM API KEY ATIVA) =====
 async function fetchTMDB(endpoint) {
-  // CORREÇÃO BUG #1: Verificação robusta da API key
   if (!CONFIG.tmdbApiKey || CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI" || CONFIG.tmdbApiKey.trim() === "") {
-    console.warn("TMDB: API key não configurada. Configure em CONFIG.tmdbApiKey");
+    console.warn("TMDB: API key não configurada.");
     return null;
   }
   try {
@@ -1316,9 +1311,8 @@ async function fetchTMDB(endpoint) {
 }
 
 async function loadTrending() {
-  // CORREÇÃO BUG #1: Alerta amigável se API não configurada
   if (!CONFIG.tmdbApiKey || CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI" || CONFIG.tmdbApiKey.trim() === "") {
-    alert("Para ativar o catálogo dinâmico, configure sua API Key do TMDB em CONFIG.tmdbApiKey\n\nObtenha grátis em: https://www.themoviedb.org/settings/api");
+    alert("Para ativar o catálogo dinâmico, configure sua API Key do TMDB em CONFIG.tmdbApiKey");
     return;
   }
   document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
@@ -1336,9 +1330,8 @@ async function loadTrending() {
 }
 
 async function loadGenre(gid) {
-  // CORREÇÃO BUG #1: Alerta amigável se API não configurada
   if (!CONFIG.tmdbApiKey || CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI" || CONFIG.tmdbApiKey.trim() === "") {
-    alert("Para ativar o catálogo dinâmico, configure sua API Key do TMDB em CONFIG.tmdbApiKey\n\nObtenha grátis em: https://www.themoviedb.org/settings/api");
+    alert("Para ativar o catálogo dinâmico, configure sua API Key do TMDB em CONFIG.tmdbApiKey");
     return;
   }
   document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
@@ -1467,15 +1460,24 @@ document.addEventListener("DOMContentLoaded", () => {
     si.addEventListener("blur", () => si.placeholder = "Buscar por título, conflito, tag ou gênero...");
   }
   
-  // CORREÇÃO BUG #2: Carregar posters dos cards curados se API configurada
+  // ✅ CARREGAR POSTERS DOS CARDS CURADOS (API KEY ATIVA)
   if (CONFIG.tmdbApiKey && CONFIG.tmdbApiKey !== "SUA_API_KEY_AQUI" && CONFIG.tmdbApiKey.trim() !== "") {
     Object.entries(catalogData).forEach(([id, data]) => {
       loadCuratedPoster(id, data.titulo);
     });
   }
   
-  // Desativa botões TMDB visualmente se API não configurada
-  if (!CONFIG.tmdbApiKey || CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI" || CONFIG.tmdbApiKey.trim() === "") {
+  // Ativar botões TMDB (agora com API key configurada, ficam normais)
+  if (CONFIG.tmdbApiKey && CONFIG.tmdbApiKey !== "SUA_API_KEY_AQUI" && CONFIG.tmdbApiKey.trim() !== "") {
+    ["btnTrending", "btnAcao", "btnDrama", "btnDoc"].forEach(id => {
+      const btn = document.getElementById(id);
+      if (btn) {
+        btn.style.opacity = "1";
+        btn.style.cursor = "pointer";
+        btn.title = "";
+      }
+    });
+  } else {
     ["btnTrending", "btnAcao", "btnDrama", "btnDoc"].forEach(id => {
       const btn = document.getElementById(id);
       if (btn) {
