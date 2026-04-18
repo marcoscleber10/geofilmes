@@ -1,5 +1,5 @@
-<!DOCTYPE html>lang="pt-BR">
-<html 
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
 <meta property="og:description" content="Catálogo curado de filmes, séries e documentários sobre conflitos reais. Disponível na Atmos IPTV.">
 <meta property="og:type" content="website">
 
-<title>Atmos IPTV • GeoFilmes | Conflitos Reais</title>
+<title>Atmos IPTV • GeoFilmes PRO MAX | Conflitos Reais</title>
 
 <style>
 /* ===== RESET & BASE ===== */
@@ -127,6 +127,7 @@ nav button:focus {
   border: 1px solid #1e293b;
   transition: transform 0.3s, border-color 0.3s;
   position: relative;
+  cursor: pointer;
 }
 .card:hover {
   transform: translateY(-5px);
@@ -260,6 +261,25 @@ nav button:focus {
   color: #000;
 }
 
+/* Favorite button on card */
+.card-favorite {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  background: rgba(2,6,23,0.8);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+.card-favorite:hover { transform: scale(1.1); }
+.card-favorite.active { color: #ef4444; }
+
 /* Empty state */
 .empty-state {
   grid-column: 1 / -1;
@@ -385,12 +405,160 @@ nav button:focus {
   font-weight: bold;
 }
 
+/* ===== DETAILS VIEW (NOVO - PRO MAX) ===== */
+#detailsView {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(2,6,23,0.95);
+  z-index: 200;
+  overflow-y: auto;
+  padding: 20px;
+}
+#detailsView.active { display: block; }
+#detailsView .details-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #020617;
+  border-radius: 16px;
+  padding: 25px;
+  border: 1px solid #1e293b;
+}
+#detailsView .back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #38bdf8;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+#detailsView .back-btn:hover { text-decoration: underline; }
+#detailsView .details-poster {
+  width: 100%;
+  max-width: 300px;
+  height: 450px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border-radius: 12px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  color: #38bdf8;
+}
+#detailsView .details-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: none;
+}
+#detailsView h2 { margin: 0 0 15px; font-size: 24px; }
+#detailsView .details-meta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 15px 0;
+}
+#detailsView .details-meta .rating { color: #fbbf24; font-weight: bold; }
+#detailsView .details-overview {
+  font-size: 14px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+#detailsView .details-fav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 24px;
+  margin: 15px 0;
+  transition: transform 0.2s;
+}
+#detailsView .details-fav:hover { transform: scale(1.1); }
+#detailsView .details-fav.active { color: #ef4444; }
+#detailsView .details-stream {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #25D366;
+  color: #000;
+  padding: 12px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 20px 0;
+  transition: transform 0.2s;
+}
+#detailsView .details-stream:hover { transform: translateY(-2px); }
+#detailsView .reco-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #1e293b;
+}
+#detailsView .reco-section h3 {
+  margin: 0 0 15px;
+  font-size: 18px;
+}
+#detailsView .reco-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+}
+#detailsView .reco-card {
+  background: #0f172a;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #1e293b;
+  transition: border-color 0.2s;
+}
+#detailsView .reco-card:hover { border-color: #38bdf8; }
+#detailsView .reco-poster {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #38bdf8;
+}
+#detailsView .reco-card h4 {
+  font-size: 13px;
+  padding: 10px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== LOADING & UTILS ===== */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #94a3b8;
+}
+.loading::after {
+  content: "⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏";
+  animation: spin 1s steps(10) infinite;
+  display: inline-block;
+  margin-left: 10px;
+}
+@keyframes spin { to { transform: translateX(-10ch); } }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
   header h1 { font-size: 24px; }
   nav { top: 95px; }
   .card-poster { height: 140px; }
   .card-desc { -webkit-line-clamp: 2; min-height: 36px; }
+  #detailsView .details-poster { height: 300px; }
+  #detailsView .reco-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
 }
 
 /* ===== ACCESSIBILITY ===== */
@@ -422,10 +590,10 @@ footer a { color: #38bdf8; text-decoration: none; }
 
 <header>
   <span class="brand-badge">📡 Atmos IPTV P2P</span>
-  <h1>🌍 GeoFilmes</h1>
+  <h1>🌍 GeoFilmes PRO MAX</h1>
   <p>Histórias reais. Conflitos reais. Sem filtro.</p>
-  <div class="distributor-badge">Atendimento direto com distribuidor</div>
-  <input type="text" id="search" placeholder="Buscar por título, conflito, tag..." aria-label="Buscar filmes">
+  <div class="distributor-badge">Atendimento direto: (97) 99191-6621</div>
+  <input type="text" id="search" placeholder="Buscar por título, conflito, tag ou gênero..." aria-label="Buscar filmes">
 </header>
 
 <nav role="navigation" aria-label="Filtros de categoria">
@@ -436,15 +604,22 @@ footer a { color: #38bdf8; text-decoration: none; }
   <button onclick="filterSelection('iraque')" aria-pressed="false">Iraque</button>
   <button onclick="filterSelection('siria')" aria-pressed="false">Síria</button>
   <button onclick="filterSelection('brasil')" aria-pressed="false">Brasil</button>
+  <!-- NOVOS BOTÕES PRO MAX -->
+  <button onclick="loadTrending()">🔥 Trending TMDB</button>
+  <button onclick="loadGenre(28)">💣 Ação</button>
+  <button onclick="loadGenre(18)">🎭 Drama</button>
+  <button onclick="loadGenre(99)">📚 Documentário</button>
+  <button onclick="showFavorites()">❤️ Favoritos</button>
 </nav>
 
 <div class="container">
 
-  <!-- 🔥 Mais assistidos -->
+  <!-- 🔥 Mais assistidos (MANTIDO ORIGINAL) -->
   <h2 class="section-title">🔥 Mais assistidos da semana</h2>
   <div class="grid">
     
-    <div class="card serie israel" data-tags="israel ação espionagem conflito-real 2010s" data-year="2015" data-rating="8.4" data-similar="generation-kill,zero-dark-thirty">
+    <div class="card serie israel" data-id="fauda-01" data-tags="israel ação espionagem conflito-real 2010s" data-year="2015" data-rating="8.4" data-similar="generation-kill,zero-dark-thirty" data-type="serie">
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('fauda-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <p class="rank">#1 Fauda</p>
       <div class="card-meta">
@@ -460,7 +635,7 @@ footer a { color: #38bdf8; text-decoration: none; }
         <span class="tag">Espionagem</span>
         <span class="tag">Oriente Médio</span>
       </div>
-      <a href="#" class="stream tooltip" aria-label="Assistir na Atmos IPTV">
+      <a href="#" class="stream tooltip" aria-label="Assistir na Atmos IPTV" onclick="event.preventDefault(); showDetailsFromCard('fauda-01')">
         Atmos IPTV
         <span class="tooltip-text">Disponível na Atmos IPTV • Dublado e legendado • Teste grátis</span>
       </a>
@@ -470,7 +645,8 @@ footer a { color: #38bdf8; text-decoration: none; }
       </div>
     </div>
 
-    <div class="card serie iraque" data-tags="iraque guerra militar 2000s baseado-em-fatos" data-year="2008" data-rating="8.6" data-similar="fauda,green-zone,hurt-locker">
+    <div class="card serie iraque" data-id="gen-kill-01" data-tags="iraque guerra militar 2000s baseado-em-fatos" data-year="2008" data-rating="8.6" data-similar="fauda,green-zone,hurt-locker" data-type="serie">
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('gen-kill-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <p class="rank">#2 Generation Kill</p>
       <div class="card-meta">
@@ -486,7 +662,7 @@ footer a { color: #38bdf8; text-decoration: none; }
         <span class="tag">Militar</span>
         <span class="tag">Baseado em fatos</span>
       </div>
-      <a href="#" class="stream tooltip" aria-label="Assistir na Atmos IPTV">
+      <a href="#" class="stream tooltip" aria-label="Assistir na Atmos IPTV" onclick="event.preventDefault(); showDetailsFromCard('gen-kill-01')">
         Atmos IPTV
         <span class="tooltip-text">Disponível na Atmos IPTV • Legendado • Teste grátis</span>
       </a>
@@ -498,7 +674,7 @@ footer a { color: #38bdf8; text-decoration: none; }
 
   </div>
 
-  <!-- 🌍 Top por Conflito -->
+  <!-- 🌍 Top por Conflito (MANTIDO ORIGINAL) -->
   <h2 class="section-title">🌍 Top por Conflito</h2>
   <div class="grid">
     
@@ -535,12 +711,13 @@ footer a { color: #38bdf8; text-decoration: none; }
 
   </div>
 
-  <!-- 🎬 Catálogo Principal -->
+  <!-- 🎬 Catálogo Principal (MANTIDO ORIGINAL - 8 CARDS) -->
   <h2 class="section-title">🎬 Catálogo Atmos IPTV</h2>
   <div class="grid" id="filmGrid">
 
     <!-- Fauda -->
-    <div class="card serie israel" data-id="fauda-01" data-tags="israel ação espionagem conflito-real 2010s" data-year="2015" data-rating="8.4" data-similar="generation-kill,zero-dark-thirty">
+    <div class="card serie israel" data-id="fauda-01" data-tags="israel ação espionagem conflito-real 2010s" data-year="2015" data-rating="8.4" data-similar="generation-kill,zero-dark-thirty" data-type="serie">
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('fauda-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Fauda</h3>
       <div class="card-meta">
@@ -556,12 +733,13 @@ footer a { color: #38bdf8; text-decoration: none; }
         <span class="tag">Ação</span>
         <span class="tag">Oriente Médio</span>
       </div>
-      <a href="#" class="stream">Atmos IPTV</a>
+      <a href="#" class="stream" onclick="event.preventDefault(); showDetailsFromCard('fauda-01')">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
     <!-- Generation Kill -->
-    <div class="card serie iraque" data-id="gen-kill-01" data-tags="iraque guerra militar 2000s baseado-em-fatos" data-year="2008" data-rating="8.6" data-similar="fauda,green-zone,hurt-locker">
+    <div class="card serie iraque" data-id="gen-kill-01" data-tags="iraque guerra militar 2000s baseado-em-fatos" data-year="2008" data-rating="8.6" data-similar="fauda,green-zone,hurt-locker" data-type="serie">
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('gen-kill-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Generation Kill</h3>
       <div class="card-meta">
@@ -577,12 +755,13 @@ footer a { color: #38bdf8; text-decoration: none; }
         <span class="tag">Guerra</span>
         <span class="tag">HBO</span>
       </div>
-      <a href="#" class="stream">Atmos IPTV</a>
+      <a href="#" class="stream" onclick="event.preventDefault(); showDetailsFromCard('gen-kill-01')">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
     <!-- For Sama -->
-    <div class="card documentario siria" data-id="for-sama-01" data-tags="siria documentario guerra-civil premio 2010s" data-year="2019" data-rating="8.5" data-similar="last-men-aleppo,caves-of-forgetting">
+    <div class="card documentario siria" data-id="for-sama-01" data-tags="siria documentario guerra-civil premio 2010s" data-year="2019" data-rating="8.5" data-similar="last-men-aleppo,caves-of-forgetting" data-type="movie">
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('for-sama-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>For Sama</h3>
       <div class="card-meta">
@@ -598,12 +777,13 @@ footer a { color: #38bdf8; text-decoration: none; }
         <span class="tag">Síria</span>
         <span class="tag">Premiado</span>
       </div>
-      <a href="#" class="stream">Atmos IPTV</a>
+      <a href="#" class="stream" onclick="event.preventDefault(); showDetailsFromCard('for-sama-01')">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
     <!-- Guerra de Canudos -->
-    <div class="card filme brasil" data-id="canudos-01" data-tags="brasil historia conflito-social 1990s baseado-em-livro" data-year="1997" data-rating="7.2" data-similar="batismo-sangue,abraco-partido">
+    <div class="card filme brasil" data-id="canudos-01" data-tags="brasil historia conflito-social 1990s baseado-em-livro" data-year="1997" data-rating="7.2" data-similar="batismo-sangue,abraco-partido" data-type="movie">
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('canudos-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Guerra de Canudos</h3>
       <div class="card-meta">
@@ -619,12 +799,13 @@ footer a { color: #38bdf8; text-decoration: none; }
         <span class="tag">Histórico</span>
         <span class="tag">Drama</span>
       </div>
-      <a href="#" class="stream">Atmos IPTV</a>
+      <a href="#" class="stream" onclick="event.preventDefault(); showDetailsFromCard('canudos-01')">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
     <!-- Gladiador -->
-    <div class="card filme guerra" data-id="gladiator-01" data-tags="roma historico epico ação 2000s premio" data-year="2000" data-rating="8.5" data-similar="troia,300,kingdom-of-heaven">
+    <div class="card filme guerra" data-id="gladiator-01" data-tags="roma historico epico ação 2000s premio" data-year="2000" data-rating="8.5" data-similar="troia,300,kingdom-of-heaven" data-type="movie">
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('gladiator-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Gladiador</h3>
       <div class="card-meta">
@@ -640,12 +821,13 @@ footer a { color: #38bdf8; text-decoration: none; }
         <span class="tag">Épico</span>
         <span class="tag">Ação</span>
       </div>
-      <a href="#" class="stream">Atmos IPTV</a>
+      <a href="#" class="stream" onclick="event.preventDefault(); showDetailsFromCard('gladiator-01')">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
     <!-- Green Zone -->
-    <div class="card filme iraque" data-id="green-zone-01" data-tags="iraque guerra ação 2010s baseado-em-fatos" data-year="2010" data-rating="7.0" data-similar="generation-kill,hurt-locker,body-of-lies">
+    <div class="card filme iraque" data-id="green-zone-01" data-tags="iraque guerra ação 2010s baseado-em-fatos" data-year="2010" data-rating="7.0" data-similar="generation-kill,hurt-locker,body-of-lies" data-type="movie">
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('green-zone-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Green Zone</h3>
       <div class="card-meta">
@@ -661,12 +843,13 @@ footer a { color: #38bdf8; text-decoration: none; }
         <span class="tag">Iraque</span>
         <span class="tag">Thriller</span>
       </div>
-      <a href="#" class="stream">Atmos IPTV</a>
+      <a href="#" class="stream" onclick="event.preventDefault(); showDetailsFromCard('green-zone-01')">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
     <!-- Batismo de Sangue -->
-    <div class="card documentario brasil" data-id="batismo-01" data-tags="brasil ditadura documentario resistencia 2000s" data-year="2007" data-rating="7.8" data-similar="abraco-partido,juiz">
+    <div class="card documentario brasil" data-id="batismo-01" data-tags="brasil ditadura documentario resistencia 2000s" data-year="2007" data-rating="7.8" data-similar="abraco-partido,juiz" data-type="movie">
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('batismo-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Batismo de Sangue</h3>
       <div class="card-meta">
@@ -682,12 +865,13 @@ footer a { color: #38bdf8; text-decoration: none; }
         <span class="tag">Ditadura</span>
         <span class="tag">Drama</span>
       </div>
-      <a href="#" class="stream">Atmos IPTV</a>
+      <a href="#" class="stream" onclick="event.preventDefault(); showDetailsFromCard('batismo-01')">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
     <!-- Last Men in Aleppo -->
-    <div class="card filme siria" data-id="last-men-01" data-tags="siria documentario guerra-civil 2010s premio" data-year="2018" data-rating="8.1" data-similar="for-sama,caves-of-forgetting">
+    <div class="card filme siria" data-id="last-men-01" data-tags="siria documentario guerra-civil 2010s premio" data-year="2018" data-rating="8.1" data-similar="for-sama,caves-of-forgetting" data-type="movie">
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('last-men-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Last Men in Aleppo</h3>
       <div class="card-meta">
@@ -703,42 +887,50 @@ footer a { color: #38bdf8; text-decoration: none; }
         <span class="tag">Síria</span>
         <span class="tag">Heroísmo</span>
       </div>
-      <a href="#" class="stream">Atmos IPTV</a>
+      <a href="#" class="stream" onclick="event.preventDefault(); showDetailsFromCard('last-men-01')">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
   </div>
 
-  <!-- Estado vazio -->
+  <!-- Estado vazio (MANTIDO) -->
   <div id="emptyState" class="empty-state hidden" role="status" aria-live="polite">
     <div class="icon">🔍</div>
     <p><strong>Nada encontrado na Atmos IPTV</strong></p>
     <p style="font-size:13px;margin-top:5px">Tente outros termos ou remova os filtros.</p>
   </div>
 
+  <!-- Loading state (NOVO) -->
+  <div id="loadingState" class="loading hidden">Carregando catálogo</div>
+
 </div>
 
-<!-- PROMOÇÃO ATMOS IPTV -->
+<!-- DETAILS VIEW MODAL (NOVO - PRO MAX) -->
+<div id="detailsView" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
+  <div class="details-content">
+    <span class="back-btn" onclick="closeDetails()">⬅ Voltar ao catálogo</span>
+    <div id="detailsContent"></div>
+  </div>
+</div>
+
+<!-- PROMOÇÃO ATMOS IPTV (MANTIDO) -->
 <div class="promo-section">
   <h2>📡 <span class="brand-highlight">Atmos IPTV P2P</span></h2>
   <p style="font-size:16px">✅ A melhor lista de canais, filmes e séries em um só lugar</p>
   <p class="price">💰 Apenas R$30/mês</p>
   <p>🎁 <strong>Teste IPTV grátis</strong> • Suporte 24/7 • TV Box compatível</p>
-  <a href="https://wa.me/5597991916621?text=Olá,%20vim%20pelo%20site%20GeoFilmes%20e%20quero%20testar%20o%20serviço%20Atmos%20IPTV"
-     target="_blank" rel="noopener noreferrer"
-     class="promo-btn" aria-label="Solicitar teste grátis da Atmos IPTV no WhatsApp">
+  <a href="#" class="promo-btn" id="promoLink" target="_blank" rel="noopener noreferrer" aria-label="Solicitar teste grátis da Atmos IPTV no WhatsApp">
      🎬 Quero meu teste grátis
   </a>
   <p style="font-size:11px;margin-top:15px;opacity:0.7">Atendimento direto: (97) 99191-6621</p>
 </div>
 
-<!-- BOTÃO FLUTUANTE WHATSAPP -->
-<a href="https://wa.me/5597991916621?text=Olá,%20quero%20saber%20mais%20sobre%20a%20Atmos%20IPTV"
-   class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp">
+<!-- BOTÃO FLUTUANTE WHATSAPP (MANTIDO) -->
+<a href="#" class="whatsapp-float" id="floatLink" target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp">
    💬 WhatsApp
 </a>
 
-<!-- FOOTER -->
+<!-- FOOTER (MANTIDO) -->
 <footer>
   <p>📡 Atmos IPTV P2P • Distribuidor autorizado</p>
   <p style="margin-top:5px">Contato: <strong>(97) 99191-6621</strong></p>
@@ -748,54 +940,71 @@ footer a { color: #38bdf8; text-decoration: none; }
   </p>
 </footer>
 
-<!-- SCRIPT PRINCIPAL -->
+<!-- SCRIPT PRINCIPAL COMPLETO -->
 <script>
-// ===== CONFIGURAÇÃO DO DISTRIBUIDOR (EDITE AQUI) =====
-const DISTRIBUIDOR = {
-  whatsapp: "5597991916621", // Seu número - formato internacional sem + ou espaços
-  mensagemPadrao: "Olá, vim pelo site GeoFilmes e quero saber sobre a Atmos IPTV"
+// ===== CONFIGURAÇÃO DO DISTRIBUIDOR (MANTIDO + EXPANDIDO) =====
+const CONFIG = {
+  whatsapp: "5597991916621", // Seu número - formato internacional
+  mensagemPadrao: "Olá, vim pelo site GeoFilmes PRO MAX e quero saber sobre a Atmos IPTV",
+  // TMDB API - opcional: obtenha em https://www.themoviedb.org/settings/api
+  tmdbApiKey: "SUA_API_KEY_AQUI", 
+  tmdbBase: "https://api.themoviedb.org/3",
+  tmdbImg: "https://image.tmdb.org/t/p/w500"
 };
 
-// ===== CATÁLOGO DE DADOS (para recomendações) =====
+// ===== CATÁLOGO CURADO ORIGINAL (MANTIDO - 17 ENTRADAS) =====
 const catalogData = {
-  "fauda-01": { titulo: "Fauda", tags: ["israel","ação","espionagem","conflito-real","2010s"] },
-  "generation-kill": { titulo: "Generation Kill", tags: ["iraque","guerra","militar","2000s","baseado-em-fatos"] },
-  "for-sama-01": { titulo: "For Sama", tags: ["siria","documentario","guerra-civil","premio","2010s"] },
-  "canudos-01": { titulo: "Guerra de Canudos", tags: ["brasil","historia","conflito-social","1990s"] },
-  "gladiator-01": { titulo: "Gladiador", tags: ["roma","historico","epico","ação","2000s"] },
-  "green-zone-01": { titulo: "Green Zone", tags: ["iraque","guerra","ação","2010s"] },
-  "batismo-01": { titulo: "Batismo de Sangue", tags: ["brasil","ditadura","documentario","2000s"] },
-  "last-men-01": { titulo: "Last Men in Aleppo", tags: ["siria","documentario","guerra-civil","2010s"] },
-  "zero-dark-thirty": { titulo: "A Noite Mais Escura", tags: ["ação","espionagem","2010s"] },
-  "hurt-locker": { titulo: "Guerra ao Terror", tags: ["iraque","guerra","premio","2000s"] },
-  "troia": { titulo: "Troia", tags: ["historico","epico","ação"] },
-  "300": { titulo: "300", tags: ["historico","epico","ação"] },
-  "kingdom-of-heaven": { titulo: "Cruzada", tags: ["historico","epico","guerra"] },
-  "body-of-lies": { titulo: "Corpo de Mentiras", tags: ["iraque","espionagem","ação"] },
-  "abraco-partido": { titulo: "Abraço Partido", tags: ["brasil","drama","social"] },
-  "juiz": { titulo: "O Juiz", tags: ["brasil","ditadura","documentario"] },
-  "caves-of-forgetting": { titulo: "As Cavernas do Esquecimento", tags: ["siria","documentario","guerra"] }
+  "fauda-01": { titulo: "Fauda", tags: ["israel","ação","espionagem","conflito-real","2010s"], tipo: "serie", ano: "2015", nota: "8.4", desc: "Equipe de forças especiais israelense opera disfarçada em território palestino. Ação intensa baseada em relatos reais." },
+  "gen-kill-01": { titulo: "Generation Kill", tags: ["iraque","guerra","militar","2000s","baseado-em-fatos"], tipo: "serie", ano: "2008", nota: "8.6", desc: "Jornalista embarca com fuzileiros navais na invasão do Iraque em 2003. Retrato cru e realista da guerra moderna." },
+  "for-sama-01": { titulo: "For Sama", tags: ["siria","documentario","guerra-civil","premio","2010s"], tipo: "movie", ano: "2019", nota: "8.5", desc: "Carta de amor de uma mãe à filha, filmada durante o cerco de Aleppo. Vencedor do BAFTA e indicado ao Oscar." },
+  "canudos-01": { titulo: "Guerra de Canudos", tags: ["brasil","historia","conflito-social","1990s","baseado-em-livro"], tipo: "movie", ano: "1997", nota: "7.2", desc: "Adaptação do clássico de Euclides da Cunha sobre o conflito no sertão baiano. Produção épica brasileira." },
+  "gladiator-01": { titulo: "Gladiador", tags: ["roma","historico","epico","ação","2000s","premio"], tipo: "movie", ano: "2000", nota: "8.5", desc: "General romano busca vingança após traição imperial. Épico vencedor de 5 Oscars, incluindo Melhor Filme." },
+  "green-zone-01": { titulo: "Green Zone", tags: ["iraque","guerra","ação","2010s","baseado-em-fatos"], tipo: "movie", ano: "2010", nota: "7.0", desc: "Oficial americano descobre conspiração durante busca por armas no Iraque. Thriller de ação com Matt Damon." },
+  "batismo-01": { titulo: "Batismo de Sangue", tags: ["brasil","ditadura","documentario","resistencia","2000s"], tipo: "movie", ano: "2007", nota: "7.8", desc: "Freis dominicanos que resistiram à ditadura militar brasileira. Baseado em fatos reais, com Daniel de Oliveira." },
+  "last-men-01": { titulo: "Last Men in Aleppo", tags: ["siria","documentario","guerra-civil","2010s","premio"], tipo: "movie", ano: "2018", nota: "8.1", desc: "Voluntários do Capacetes Brancos resgatam civis em Aleppo sob bombardeios. Indicado ao Oscar de Documentário." },
+  "zero-dark-thirty": { titulo: "A Noite Mais Escura", tags: ["ação","espionagem","2010s"], tipo: "movie" },
+  "hurt-locker": { titulo: "Guerra ao Terror", tags: ["iraque","guerra","premio","2000s"], tipo: "movie" },
+  "troia": { titulo: "Troia", tags: ["historico","epico","ação"], tipo: "movie" },
+  "300": { titulo: "300", tags: ["historico","epico","ação"], tipo: "movie" },
+  "kingdom-of-heaven": { titulo: "Cruzada", tags: ["historico","epico","guerra"], tipo: "movie" },
+  "body-of-lies": { titulo: "Corpo de Mentiras", tags: ["iraque","espionagem","ação"], tipo: "movie" },
+  "abraco-partido": { titulo: "Abraço Partido", tags: ["brasil","drama","social"], tipo: "movie" },
+  "juiz": { titulo: "O Juiz", tags: ["brasil","ditadura","documentario"], tipo: "movie" },
+  "caves-of-forgetting": { titulo: "As Cavernas do Esquecimento", tags: ["siria","documentario","guerra"], tipo: "movie" }
 };
 
-// ===== FUNÇÕES DE UTILIDADE =====
+// ===== ESTADO GLOBAL =====
+let favoritos = JSON.parse(localStorage.getItem("atmos_fav_v2")) || [];
+let currentMode = 'curated'; // 'curated' ou 'tmdb'
+
+// ===== FUNÇÕES DE UTILIDADE (MANTIDAS) =====
 function normalizeText(text) {
   return text.toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .trim();
 }
 
-// ===== FILTRO POR CATEGORIA =====
+function showLoading(show) {
+  document.getElementById('loadingState').classList.toggle('hidden', !show);
+  document.getElementById('filmGrid').style.opacity = show ? '0.5' : '1';
+}
+
+// ===== FILTRO POR CATEGORIA (MANTIDO + APRIMORADO) =====
 function filterSelection(category) {
+  // Atualiza botões ativos (apenas filtros originais)
   document.querySelectorAll('nav button').forEach(btn => {
-    btn.classList.remove('active');
-    btn.setAttribute('aria-pressed', 'false');
+    if (btn.onclick?.toString().includes('filterSelection')) {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    }
   });
-  if (event?.target) {
+  if (event?.target && event.target.onclick?.toString().includes('filterSelection')) {
     event.target.classList.add('active');
     event.target.setAttribute('aria-pressed', 'true');
   }
-
-  const cards = document.querySelectorAll('.card');
+  
+  currentMode = 'curated';
+  const cards = document.querySelectorAll('#filmGrid .card');
   let visibleCount = 0;
 
   cards.forEach(card => {
@@ -804,10 +1013,8 @@ function filterSelection(category) {
       visibleCount++;
       return;
     }
-
     const cardTags = card.dataset.tags.split(' ');
     const matches = category === 'all' || cardTags.includes(category) || card.classList.contains(category);
-    
     if (matches) {
       card.classList.remove('hidden');
       visibleCount++;
@@ -815,26 +1022,24 @@ function filterSelection(category) {
       card.classList.add('hidden');
     }
   });
-
   toggleEmptyState(visibleCount);
 }
 
-// ===== BUSCA INTELIGENTE =====
-document.getElementById('search').addEventListener('keyup', function() {
+// ===== BUSCA INTELIGENTE (MANTIDA + EXPANDIDA) =====
+document.getElementById('search').addEventListener('keyup', async function() {
   const query = normalizeText(this.value);
+  
+  // Busca no catálogo curado (sempre)
   const cards = document.querySelectorAll('#filmGrid .card');
   let visibleCount = 0;
-
+  
   cards.forEach(card => {
     if (!card.dataset.id) return;
-
     const searchable = normalizeText(
       card.querySelector('h3')?.textContent + ' ' +
       card.querySelector('.card-desc')?.textContent + ' ' +
-      card.dataset.tags + ' ' +
-      card.dataset.year
+      card.dataset.tags + ' ' + card.dataset.year
     );
-
     if (searchable.includes(query)) {
       card.classList.remove('hidden');
       visibleCount++;
@@ -842,15 +1047,28 @@ document.getElementById('search').addEventListener('keyup', function() {
       card.classList.add('hidden');
     }
   });
-
+  
+  // Se API configurada e query longa, busca na TMDB também
+  if (query.length >= 3 && CONFIG.tmdbApiKey !== "SUA_API_KEY_AQUI") {
+    showLoading(true);
+    try {
+      const res = await fetch(`${CONFIG.tmdbBase}/search/multi?api_key=${CONFIG.tmdbApiKey}&query=${encodeURIComponent(query)}&language=pt-BR`);
+      const data = await res.json();
+      if (data.results?.length > 0) {
+        // Pode expandir para mostrar resultados dinâmicos aqui
+        console.log('Resultados TMDB:', data.results.length);
+      }
+    } catch(e) { console.warn('Busca TMDB falhou:', e); }
+    showLoading(false);
+  }
+  
   toggleEmptyState(visibleCount);
 });
 
-// ===== ESTADO VAZIO =====
+// ===== ESTADO VAZIO (MANTIDO) =====
 function toggleEmptyState(count) {
   const empty = document.getElementById('emptyState');
   const grid = document.getElementById('filmGrid');
-  
   if (count === 0) {
     empty.classList.remove('hidden');
     grid.style.display = 'none';
@@ -860,14 +1078,12 @@ function toggleEmptyState(count) {
   }
 }
 
-// ===== SISTEMA DE RECOMENDAÇÃO =====
+// ===== SISTEMA DE RECOMENDAÇÃO ORIGINAL (MANTIDO) =====
 function loadSimilarMovies() {
   document.querySelectorAll('.card[data-id]').forEach(card => {
     const similarContainer = card.querySelector('.similar-list');
     if (!similarContainer) return;
-
     const similarIds = (card.dataset.similar || '').split(',').filter(Boolean);
-    
     similarIds.slice(0, 3).forEach(simId => {
       const simData = catalogData[simId];
       if (simData) {
@@ -887,52 +1103,328 @@ function loadSimilarMovies() {
         similarContainer.appendChild(btn);
       }
     });
-
     if (similarContainer.children.length === 0) {
       similarContainer.parentElement.style.display = 'none';
     }
   });
 }
 
-// ===== ATUALIZAR LINKS DO WHATSAPP CENTRALIZADO =====
-function updateWhatsAppLinks() {
-  const encodedMsg = encodeURIComponent(DISTRIBUIDOR.mensagemPadrao);
-  const waBase = `https://wa.me/${DISTRIBUIDOR.whatsapp}?text=`;
+// ===== FAVORITOS - NOVO (PRO MAX) =====
+function toggleFav(id) {
+  const card = document.querySelector(`.card[data-id="${id}"]`);
+  const favBtn = card?.querySelector('.card-favorite');
   
-  // Atualiza todos os links WhatsApp
-  document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-    if (link.href.includes('text=')) {
-      link.href = waBase + encodedMsg;
+  if (favoritos.includes(id)) {
+    favoritos = favoritos.filter(f => f !== id);
+    if (favBtn) { favBtn.textContent = '🤍'; favBtn.classList.remove('active'); }
+  } else {
+    favoritos.push(id);
+    if (favBtn) { favBtn.textContent = '❤️'; favBtn.classList.add('active'); }
+  }
+  localStorage.setItem("atmos_fav_v2", JSON.stringify(favoritos));
+  updateFavoritesUI();
+}
+
+function updateFavoritesUI() {
+  // Atualiza botões de favorito nos cards
+  document.querySelectorAll('.card[data-id]').forEach(card => {
+    const id = card.dataset.id;
+    const btn = card.querySelector('.card-favorite');
+    if (btn && favoritos.includes(id)) {
+      btn.textContent = '❤️';
+      btn.classList.add('active');
+    } else if (btn) {
+      btn.textContent = '🤍';
+      btn.classList.remove('active');
     }
   });
 }
 
-// ===== INICIALIZAÇÃO =====
+function showFavorites() {
+  // Atualiza UI dos botões
+  document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+  event?.target?.classList.add('active');
+  
+  currentMode = 'favorites';
+  const grid = document.getElementById('filmGrid');
+  const empty = document.getElementById('emptyState');
+  grid.innerHTML = '';
+  
+  const favCards = favoritos.map(id => document.querySelector(`.card[data-id="${id}"]`)).filter(Boolean);
+  
+  if (favCards.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="icon">🤍</div><p><strong>Nenhum favorito ainda</strong></p><p style="font-size:13px;margin-top:5px">Clique em 🤍 nos títulos para salvar aqui.</p></div>`;
+    empty.classList.add('hidden');
+  } else {
+    favCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      // Reatribui eventos nos clones
+      clone.querySelector('.card-favorite')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleFav(card.dataset.id);
+      });
+      clone.querySelector('.stream')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        showDetailsFromCard(card.dataset.id);
+      });
+      grid.appendChild(clone);
+    });
+    empty.classList.add('hidden');
+  }
+  grid.style.display = 'grid';
+}
+
+// ===== DETAILS VIEW - NOVO (PRO MAX) =====
+function showDetailsFromCard(id) {
+  const item = catalogData[id];
+  if (!item) return;
+  
+  const detailsView = document.getElementById('detailsView');
+  const content = document.getElementById('detailsContent');
+  const isFav = favoritos.includes(id);
+  const waMsg = encodeURIComponent(`Olá, quero assistir "${item.titulo}" na Atmos IPTV`);
+  const waLink = `https://wa.me/${CONFIG.whatsapp}?text=${waMsg}`;
+  
+  content.innerHTML = `
+    <h2 id="detailsTitle">${item.titulo}</h2>
+    <div class="details-poster"><span style="font-size:80px">🎬</span></div>
+    <div class="details-meta">
+      <span class="rating">⭐ ${item.nota || 'N/A'}</span>
+      <span>•</span>
+      <span>📅 ${item.ano || 'N/A'}</span>
+      <span>•</span>
+      <span>📡 Atmos IPTV</span>
+      <span>•</span>
+      <span>${item.tipo === 'serie' ? 'Série' : 'Filme'}</span>
+    </div>
+    <p class="details-overview">${item.desc || 'Sem descrição disponível.'}</p>
+    ${item.tags ? `<p><strong>Tags:</strong> ${item.tags.join(', ')}</p>` : ''}
+    <div class="details-fav ${isFav ? 'active' : ''}" onclick="toggleFavDetails('${id}')">
+      ${isFav ? '❤️' : '🤍'} <span style="font-size:14px">${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}</span>
+    </div>
+    <br>
+    <a href="${waLink}" class="details-stream" target="_blank" rel="noopener noreferrer">📺 Assistir na Atmos IPTV</a>
+    
+    <div class="reco-section">
+      <h3>🎬 Quem viu também gostou</h3>
+      <div class="reco-grid" id="detailsReco"></div>
+    </div>
+  `;
+  
+  detailsView.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // Carrega recomendações
+  loadDetailsRecommendations(id, item);
+}
+
+function toggleFavDetails(id) {
+  toggleFav(id);
+  showDetailsFromCard(id); // Re-render para atualizar UI
+}
+
+function closeDetails() {
+  document.getElementById('detailsView').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Fechar details ao clicar fora
+document.getElementById('detailsView').addEventListener('click', (e) => {
+  if (e.target.id === 'detailsView') closeDetails();
+});
+
+// Fechar com ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDetails();
+});
+
+// ===== RECOMENDAÇÕES NO DETAILS =====
+function loadDetailsRecommendations(id, item) {
+  const recoGrid = document.getElementById('detailsReco');
+  recoGrid.innerHTML = '';
+  
+  // Usa tags para encontrar similares no catálogo curado
+  const itemTags = item.tags || [];
+  const similar = Object.entries(catalogData)
+    .filter(([sid, sdata]) => sid !== id && sdata.tags?.some(t => itemTags.includes(t)))
+    .slice(0, 6);
+  
+  if (similar.length > 0) {
+    similar.forEach(([sid, sdata]) => {
+      const card = document.createElement('div');
+      card.className = 'reco-card';
+      card.innerHTML = `
+        <div class="reco-poster"><span style="font-size:40px">🎬</span></div>
+        <h4 title="${sdata.titulo}">${sdata.titulo}</h4>
+      `;
+      card.onclick = () => { closeDetails(); setTimeout(() => showDetailsFromCard(sid), 100); };
+      recoGrid.appendChild(card);
+    });
+  } else {
+    recoGrid.innerHTML = '<p style="color:#94a3b8;font-size:13px;grid-column:1/-1">Explore outros títulos do catálogo.</p>';
+  }
+}
+
+// ===== TMDB API FUNCTIONS - NOVO (PRO MAX) =====
+async function fetchTMDB(endpoint) {
+  if (CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI") return null;
+  try {
+    const res = await fetch(`${CONFIG.tmdbBase}${endpoint}&api_key=${CONFIG.tmdbApiKey}&language=pt-BR`);
+    if (!res.ok) throw new Error('API error');
+    return await res.json();
+  } catch(e) { console.warn('TMDB API error:', e); return null; }
+}
+
+async function loadTrending() {
+  document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+  event?.target?.classList.add('active');
+  currentMode = 'tmdb';
+  showLoading(true);
+  
+  const data = await fetchTMDB('/trending/all/week');
+  if (data?.results) {
+    renderTMDBResults(data.results.filter(i => i.poster_path));
+  } else {
+    // Fallback para catálogo curado
+    document.getElementById('filmGrid').style.display = 'grid';
+    filterSelection('all');
+  }
+  showLoading(false);
+}
+
+async function loadGenre(genreId) {
+  document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+  event?.target?.classList.add('active');
+  currentMode = 'tmdb';
+  showLoading(true);
+  
+  const data = await fetchTMDB(`/discover/movie?with_genres=${genreId}&sort_by=popularity.desc`);
+  if (data?.results) {
+    renderTMDBResults(data.results.filter(i => i.poster_path));
+  } else {
+    document.getElementById('filmGrid').style.display = 'grid';
+    filterSelection('all');
+  }
+  showLoading(false);
+}
+
+function renderTMDBResults(lista) {
+  const grid = document.getElementById('filmGrid');
+  const empty = document.getElementById('emptyState');
+  grid.innerHTML = '';
+  
+  if (!lista || lista.length === 0) {
+    empty.classList.remove('hidden');
+    grid.style.display = 'none';
+    return;
+  }
+  empty.classList.add('hidden');
+  grid.style.display = 'grid';
+  
+  lista.slice(0, 12).forEach(item => {
+    const tempId = `tmdb-${item.id}`;
+    const poster = item.poster_path ? `${CONFIG.tmdbImg}${item.poster_path}` : '';
+    const title = item.title || item.name || 'Sem título';
+    const rating = item.vote_average?.toFixed(1) || 'N/A';
+    const year = (item.release_date || item.first_air_date || '').slice(0,4);
+    const type = item.media_type === 'tv' ? 'serie' : 'movie';
+    const isFav = favoritos.includes(tempId);
+    
+    const card = document.createElement('div');
+    card.className = `card ${type}`;
+    card.dataset.id = tempId;
+    card.dataset.tmdbId = item.id;
+    card.dataset.type = type;
+    card.innerHTML = `
+      <div class="card-favorite" onclick="event.stopPropagation(); toggleFavTMDB('${tempId}', ${item.id}, '${type}')">${isFav ? '❤️' : '🤍'}</div>
+      <div class="card-poster" style="background:${poster ? 'none' : ''}">${poster ? `<img src="${poster}" alt="${title}" style="display:block">` : '<span class="placeholder-text">🎬</span>'}</div>
+      <h3>${title}</h3>
+      <div class="card-meta">
+        <span class="rating">⭐ ${rating}</span>
+        ${year ? `<span>• ${year}</span>` : ''}
+        <span>• ${type === 'serie' ? 'Série' : 'Filme'}</span>
+      </div>
+      <p class="card-desc">${item.overview?.slice(0, 100) || 'Sem descrição.'}${item.overview?.length > 100 ? '...' : ''}</p>
+      <div class="card-tags"><span class="tag">TMDB</span><span class="tag streaming">Atmos IPTV</span></div>
+      <a href="#" class="stream" onclick="event.preventDefault(); showDetailsTMDB(${item.id}, '${type}', '${title.replace(/'/g, "\\'")}')">Atmos IPTV</a>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function toggleFavTMDB(tempId, tmdbId, type) {
+  if (favoritos.includes(tempId)) {
+    favoritos = favoritos.filter(f => f !== tempId);
+  } else {
+    favoritos.push(tempId);
+  }
+  localStorage.setItem("atmos_fav_v2", JSON.stringify(favoritos));
+  // Re-render simples
+  const card = document.querySelector(`.card[data-tmdb-id="${tmdbId}"]`);
+  if (card) {
+    const btn = card.querySelector('.card-favorite');
+    btn.textContent = favoritos.includes(tempId) ? '❤️' : '🤍';
+  }
+}
+
+function showDetailsTMDB(tmdbId, type, title) {
+  // Abre modal com info básica + link WhatsApp
+  const detailsView = document.getElementById('detailsView');
+  const content = document.getElementById('detailsContent');
+  const waMsg = encodeURIComponent(`Olá, quero assistir "${title}" na Atmos IPTV`);
+  const waLink = `https://wa.me/${CONFIG.whatsapp}?text=${waMsg}`;
+  
+  content.innerHTML = `
+    <h2 id="detailsTitle">${title}</h2>
+    <div class="details-poster"><span style="font-size:80px">🎬</span></div>
+    <p class="details-overview">Título disponível via integração TMDB. Consulte disponibilidade na Atmos IPTV.</p>
+    <div class="details-meta"><span>📡 Atmos IPTV</span><span>•</span><span>${type === 'tv' ? 'Série' : 'Filme'}</span></div>
+    <br>
+    <a href="${waLink}" class="details-stream" target="_blank" rel="noopener noreferrer">📺 Consultar disponibilidade</a>
+    <p style="font-size:12px;color:#94a3b8;margin-top:15px">ID TMDB: ${tmdbId} • Tipo: ${type}</p>
+  `;
+  detailsView.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+// ===== ATUALIZAR LINKS WHATSAPP (MANTIDO) =====
+function updateWhatsAppLinks() {
+  const encodedMsg = encodeURIComponent(CONFIG.mensagemPadrao);
+  const waBase = `https://wa.me/${CONFIG.whatsapp}?text=`;
+  document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+    if (link.href.includes('text=')) link.href = waBase + encodedMsg;
+  });
+}
+
+// ===== INICIALIZAÇÃO (MANTIDO + EXPANDIDO) =====
 document.addEventListener('DOMContentLoaded', () => {
-  // Atualiza links do WhatsApp com número e mensagem do distribuidor
   updateWhatsAppLinks();
-  
-  // Carrega sistema de recomendação
   loadSimilarMovies();
+  updateFavoritesUI();
   
-  // Acessibilidade: navegação por teclado
+  // Acessibilidade
   document.querySelectorAll('nav button').forEach(btn => {
     btn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        btn.click();
-      }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
     });
   });
-
-  // Feedback no search
+  
+  // Feedback search
   const searchInput = document.getElementById('search');
-  searchInput.addEventListener('focus', () => {
-    searchInput.placeholder = 'Ex: Iraque, documentário, 2010s, ação...';
-  });
-  searchInput.addEventListener('blur', () => {
-    searchInput.placeholder = 'Buscar por título, conflito, tag...';
-  });
+  searchInput.addEventListener('focus', () => searchInput.placeholder = 'Ex: Iraque, documentário, ação, 2010s...');
+  searchInput.addEventListener('blur', () => searchInput.placeholder = 'Buscar por título, conflito, tag ou gênero...');
+  
+  // Se API não configurada, desativa botões TMDB visualmente
+  if (CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI") {
+    document.querySelectorAll('nav button').forEach(btn => {
+      if (btn.onclick?.toString().match(/loadTrending|loadGenre|showFavorites/)) {
+        btn.title = 'Configure sua API Key TMDB para ativar';
+        btn.style.opacity = '0.6';
+        btn.style.cursor = 'not-allowed';
+        btn.onclick = (e) => { e.preventDefault(); alert('Para ativar catálogo dinâmico, configure sua API Key do TMDB no código.'); };
+      }
+    });
+  }
 });
 </script>
 
