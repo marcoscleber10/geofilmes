@@ -280,7 +280,7 @@ nav button:focus {
 .card-favorite:hover { transform: scale(1.1); }
 .card-favorite.active { color: #ef4444; }
 
-/* Netflix-style rating badge (NOVO PRO) */
+/* Netflix-style rating badge */
 .card-rating-badge {
   position: absolute;
   top: 10px;
@@ -635,7 +635,10 @@ footer a { color: #38bdf8; text-decoration: none; }
     <div class="card serie israel" data-id="fauda-01" data-tags="israel ação espionagem conflito-real 2010s" data-year="2015" data-rating="8.4" data-similar="generation-kill,zero-dark-thirty" data-type="serie">
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('fauda-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-rating-badge">⭐ 8.4</div>
-      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <div class="card-poster" data-poster-loading="true">
+        <img src="" alt="Fauda" style="display:none" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="placeholder-text" style="display:flex">🎬</span>
+      </div>
       <p class="rank">#1 Fauda</p>
       <div class="card-meta">
         <span class="rating">⭐ 8.4</span>
@@ -663,7 +666,10 @@ footer a { color: #38bdf8; text-decoration: none; }
     <div class="card serie iraque" data-id="gen-kill-01" data-tags="iraque guerra militar 2000s baseado-em-fatos" data-year="2008" data-rating="8.6" data-similar="fauda,green-zone,hurt-locker" data-type="serie">
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('gen-kill-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-rating-badge">⭐ 8.6</div>
-      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <div class="card-poster" data-poster-loading="true">
+        <img src="" alt="Generation Kill" style="display:none" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="placeholder-text" style="display:flex">🎬</span>
+      </div>
       <p class="rank">#2 Generation Kill</p>
       <div class="card-meta">
         <span class="rating">⭐ 8.6</span>
@@ -735,7 +741,10 @@ footer a { color: #38bdf8; text-decoration: none; }
     <div class="card serie israel" data-id="fauda-01" data-tags="israel ação espionagem conflito-real 2010s" data-year="2015" data-rating="8.4" data-similar="generation-kill,zero-dark-thirty" data-type="serie">
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('fauda-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-rating-badge">⭐ 8.4</div>
-      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <div class="card-poster" data-poster-loading="true">
+        <img src="" alt="Fauda" style="display:none" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="placeholder-text" style="display:flex">🎬</span>
+      </div>
       <h3>Fauda</h3>
       <div class="card-meta">
         <span class="rating">⭐ 8.4</span>
@@ -758,7 +767,10 @@ footer a { color: #38bdf8; text-decoration: none; }
     <div class="card serie iraque" data-id="gen-kill-01" data-tags="iraque guerra militar 2000s baseado-em-fatos" data-year="2008" data-rating="8.6" data-similar="fauda,green-zone,hurt-locker" data-type="serie">
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('gen-kill-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-rating-badge">⭐ 8.6</div>
-      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <div class="card-poster" data-poster-loading="true">
+        <img src="" alt="Generation Kill" style="display:none" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="placeholder-text" style="display:flex">🎬</span>
+      </div>
       <h3>Generation Kill</h3>
       <div class="card-meta">
         <span class="rating">⭐ 8.6</span>
@@ -781,7 +793,10 @@ footer a { color: #38bdf8; text-decoration: none; }
     <div class="card documentario siria" data-id="for-sama-01" data-tags="siria documentario guerra-civil premio 2010s" data-year="2019" data-rating="8.5" data-similar="last-men-aleppo,caves-of-forgetting" data-type="movie">
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('for-sama-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-rating-badge">⭐ 8.5</div>
-      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <div class="card-poster" data-poster-loading="true">
+        <img src="" alt="For Sama" style="display:none" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="placeholder-text" style="display:flex">🎬</span>
+      </div>
       <h3>For Sama</h3>
       <div class="card-meta">
         <span class="rating">⭐ 8.5</span>
@@ -804,7 +819,10 @@ footer a { color: #38bdf8; text-decoration: none; }
     <div class="card filme brasil" data-id="canudos-01" data-tags="brasil historia conflito-social 1990s baseado-em-livro" data-year="1997" data-rating="7.2" data-similar="batismo-sangue,abraco-partido" data-type="movie">
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('canudos-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-rating-badge">⭐ 7.2</div>
-      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <div class="card-poster" data-poster-loading="true">
+        <img src="" alt="Guerra de Canudos" style="display:none" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="placeholder-text" style="display:flex">🎬</span>
+      </div>
       <h3>Guerra de Canudos</h3>
       <div class="card-meta">
         <span class="rating">⭐ 7.2</span>
@@ -827,7 +845,10 @@ footer a { color: #38bdf8; text-decoration: none; }
     <div class="card filme guerra" data-id="gladiator-01" data-tags="roma historico epico ação 2000s premio" data-year="2000" data-rating="8.5" data-similar="troia,300,kingdom-of-heaven" data-type="movie">
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('gladiator-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-rating-badge">⭐ 8.5</div>
-      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <div class="card-poster" data-poster-loading="true">
+        <img src="" alt="Gladiador" style="display:none" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="placeholder-text" style="display:flex">🎬</span>
+      </div>
       <h3>Gladiador</h3>
       <div class="card-meta">
         <span class="rating">⭐ 8.5</span>
@@ -850,7 +871,10 @@ footer a { color: #38bdf8; text-decoration: none; }
     <div class="card filme iraque" data-id="green-zone-01" data-tags="iraque guerra ação 2010s baseado-em-fatos" data-year="2010" data-rating="7.0" data-similar="generation-kill,hurt-locker,body-of-lies" data-type="movie">
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('green-zone-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-rating-badge">⭐ 7.0</div>
-      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <div class="card-poster" data-poster-loading="true">
+        <img src="" alt="Green Zone" style="display:none" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="placeholder-text" style="display:flex">🎬</span>
+      </div>
       <h3>Green Zone</h3>
       <div class="card-meta">
         <span class="rating">⭐ 7.0</span>
@@ -873,7 +897,10 @@ footer a { color: #38bdf8; text-decoration: none; }
     <div class="card documentario brasil" data-id="batismo-01" data-tags="brasil ditadura documentario resistencia 2000s" data-year="2007" data-rating="7.8" data-similar="abraco-partido,juiz" data-type="movie">
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('batismo-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-rating-badge">⭐ 7.8</div>
-      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <div class="card-poster" data-poster-loading="true">
+        <img src="" alt="Batismo de Sangue" style="display:none" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="placeholder-text" style="display:flex">🎬</span>
+      </div>
       <h3>Batismo de Sangue</h3>
       <div class="card-meta">
         <span class="rating">⭐ 7.8</span>
@@ -896,7 +923,10 @@ footer a { color: #38bdf8; text-decoration: none; }
     <div class="card filme siria" data-id="last-men-01" data-tags="siria documentario guerra-civil 2010s premio" data-year="2018" data-rating="8.1" data-similar="for-sama,caves-of-forgetting" data-type="movie">
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFav('last-men-01')" title="Adicionar aos favoritos">🤍</div>
       <div class="card-rating-badge">⭐ 8.1</div>
-      <div class="card-poster"><span class="placeholder-text">🎬</span></div>
+      <div class="card-poster" data-poster-loading="true">
+        <img src="" alt="Last Men in Aleppo" style="display:none" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="placeholder-text" style="display:flex">🎬</span>
+      </div>
       <h3>Last Men in Aleppo</h3>
       <div class="card-meta">
         <span class="rating">⭐ 8.1</span>
@@ -960,10 +990,11 @@ footer a { color: #38bdf8; text-decoration: none; }
 <!-- SCRIPT PRINCIPAL COMPLETO -->
 <script>
 // ===== CONFIGURAÇÃO DO DISTRIBUIDOR =====
+// ⚠️ CORREÇÃO BUG #1: API Key deve ser substituída pelo usuário
 const CONFIG = {
   whatsapp: "5597991916621",
   mensagemPadrao: "Olá, vim pelo site GeoFilmes PRO MAX e quero saber sobre a Atmos IPTV",
-  tmdbApiKey: "SUA_API_KEY_AQUI",
+  tmdbApiKey: "", // ← COLOQUE SUA CHAVE TMDB AQUI: https://www.themoviedb.org/settings/api
   tmdbBase: "https://api.themoviedb.org/3",
   tmdbImg: "https://image.tmdb.org/t/p/w500",
   fallbackToCurated: true
@@ -1012,6 +1043,35 @@ function showLoading(s) {
   if (g) g.style.opacity = s ? "0.5" : "1";
 }
 
+// ===== CORREÇÃO BUG #2: Função para carregar posters dos cards curados =====
+async function loadCuratedPoster(cardId, title) {
+  // Só tenta carregar se API key estiver configurada
+  if (!CONFIG.tmdbApiKey || CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI" || CONFIG.tmdbApiKey.trim() === "") return;
+  
+  try {
+    const res = await fetch(`${CONFIG.tmdbBase}/search/movie?api_key=${CONFIG.tmdbApiKey}&query=${encodeURIComponent(title)}&language=pt-BR`);
+    const data = await res.json();
+    
+    if (data.results && data.results[0] && data.results[0].poster_path) {
+      const posterUrl = `${CONFIG.tmdbImg}${data.results[0].poster_path}`;
+      const card = document.querySelector(`.card[data-id="${cardId}"] .card-poster`);
+      if (card) {
+        const img = card.querySelector('img');
+        const placeholder = card.querySelector('.placeholder-text');
+        if (img && placeholder) {
+          img.src = posterUrl;
+          img.alt = title;
+          img.style.display = 'block';
+          placeholder.style.display = 'none';
+        }
+      }
+    }
+  } catch (e) {
+    console.warn(`Poster para "${title}":`, e);
+    // Fallback já tratado pelo onerror no HTML
+  }
+}
+
 // ===== FILTROS ORIGINAIS =====
 function filterSelection(cat) {
   document.querySelectorAll("nav button").forEach(b => {
@@ -1056,7 +1116,7 @@ document.getElementById("search").addEventListener("input", function() {
   });
   
   // Busca na TMDB com debounce e fallback
-  if (q.length >= 2 && CONFIG.tmdbApiKey !== "SUA_API_KEY_AQUI") {
+  if (q.length >= 2 && CONFIG.tmdbApiKey && CONFIG.tmdbApiKey !== "SUA_API_KEY_AQUI" && CONFIG.tmdbApiKey.trim() !== "") {
     if (searchDebounce) clearTimeout(searchDebounce);
     searchDebounce = setTimeout(async () => {
       showLoading(true);
@@ -1194,14 +1254,28 @@ function toggleFavDetails(id) { toggleFav(id); showDetailsFromCard(id); }
 
 function closeDetails() {
   const dv = document.getElementById("detailsView");
-  if (dv) { dv.classList.remove("active"); document.body.style.overflow = ""; }
+  if (dv && dv.classList.contains("active")) {
+    dv.classList.remove("active");
+    document.body.style.overflow = "";
+    // Remove foco de qualquer input para evitar conflitos
+    if (document.activeElement && document.activeElement.blur) {
+      document.activeElement.blur();
+    }
+  }
 }
 
 const dvEl = document.getElementById("detailsView");
 if (dvEl) {
   dvEl.addEventListener("click", (e) => { if (e.target.id === "detailsView") closeDetails(); });
 }
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDetails(); });
+
+// ===== CORREÇÃO BUG #3: ESC fecha modal em qualquer contexto =====
+// Usar window.addEventListener em vez de document para capturar ESC mesmo com foco em input
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" || e.key === "Esc") {
+    closeDetails();
+  }
+});
 
 function loadDetailsRecommendations(id, it) {
   const rg = document.getElementById("detailsReco");
@@ -1226,7 +1300,11 @@ function loadDetailsRecommendations(id, it) {
 
 // ===== TMDB API INTEGRATION (COM FALLBACK SEGURO) =====
 async function fetchTMDB(endpoint) {
-  if (CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI") return null;
+  // CORREÇÃO BUG #1: Verificação robusta da API key
+  if (!CONFIG.tmdbApiKey || CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI" || CONFIG.tmdbApiKey.trim() === "") {
+    console.warn("TMDB: API key não configurada. Configure em CONFIG.tmdbApiKey");
+    return null;
+  }
   try {
     const res = await fetch(`${CONFIG.tmdbBase}${endpoint}&api_key=${CONFIG.tmdbApiKey}&language=pt-BR`);
     if (!res.ok) throw new Error("HTTP " + res.status);
@@ -1238,8 +1316,9 @@ async function fetchTMDB(endpoint) {
 }
 
 async function loadTrending() {
-  if (CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI") {
-    alert("Para ativar o catálogo dinâmico, configure sua API Key do TMDB em CONFIG.tmdbApiKey");
+  // CORREÇÃO BUG #1: Alerta amigável se API não configurada
+  if (!CONFIG.tmdbApiKey || CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI" || CONFIG.tmdbApiKey.trim() === "") {
+    alert("Para ativar o catálogo dinâmico, configure sua API Key do TMDB em CONFIG.tmdbApiKey\n\nObtenha grátis em: https://www.themoviedb.org/settings/api");
     return;
   }
   document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
@@ -1257,8 +1336,9 @@ async function loadTrending() {
 }
 
 async function loadGenre(gid) {
-  if (CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI") {
-    alert("Para ativar o catálogo dinâmico, configure sua API Key do TMDB em CONFIG.tmdbApiKey");
+  // CORREÇÃO BUG #1: Alerta amigável se API não configurada
+  if (!CONFIG.tmdbApiKey || CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI" || CONFIG.tmdbApiKey.trim() === "") {
+    alert("Para ativar o catálogo dinâmico, configure sua API Key do TMDB em CONFIG.tmdbApiKey\n\nObtenha grátis em: https://www.themoviedb.org/settings/api");
     return;
   }
   document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
@@ -1306,7 +1386,7 @@ function renderTMDBResults(lista) {
       <div class="card-favorite" onclick="event.stopPropagation(); toggleFavTMDB('${tid}', ${item.id}, '${type}')">${isF ? "❤️" : "🤍"}</div>
       <div class="card-rating-badge">⭐ ${rating}</div>
       <div class="card-poster" style="background:${poster ? "none" : ""}">
-        ${poster ? `<img src="${poster}" alt="${title}" style="display:block" loading="lazy" onerror="this.parentElement.innerHTML='<span class=\\'placeholder-text\\'>🎬</span>'">` : '<span class="placeholder-text">🎬</span>'}
+        ${poster ? `<img src="${poster}" alt="${title}" style="display:block" loading="lazy" onerror="this.parentElement.innerHTML='<span class=\\'placeholder-text\\' style=\\'display:flex\\'>🎬</span>'">` : '<span class="placeholder-text" style="display:flex">🎬</span>'}
       </div>
       <h3>${title}</h3>
       <div class="card-meta">
@@ -1387,8 +1467,15 @@ document.addEventListener("DOMContentLoaded", () => {
     si.addEventListener("blur", () => si.placeholder = "Buscar por título, conflito, tag ou gênero...");
   }
   
+  // CORREÇÃO BUG #2: Carregar posters dos cards curados se API configurada
+  if (CONFIG.tmdbApiKey && CONFIG.tmdbApiKey !== "SUA_API_KEY_AQUI" && CONFIG.tmdbApiKey.trim() !== "") {
+    Object.entries(catalogData).forEach(([id, data]) => {
+      loadCuratedPoster(id, data.titulo);
+    });
+  }
+  
   // Desativa botões TMDB visualmente se API não configurada
-  if (CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI") {
+  if (!CONFIG.tmdbApiKey || CONFIG.tmdbApiKey === "SUA_API_KEY_AQUI" || CONFIG.tmdbApiKey.trim() === "") {
     ["btnTrending", "btnAcao", "btnDrama", "btnDoc"].forEach(id => {
       const btn = document.getElementById(id);
       if (btn) {
