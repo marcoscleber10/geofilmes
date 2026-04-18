@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GeoFilmes • Histórias reais. Conflitos reais. Sem filtro. Descubra filmes, séries e documentários sobre conflitos mundiais.">
-<meta property="og:title" content="GeoFilmes • Conflitos Reais">
-<meta property="og:description" content="Catálogo curado de produções sobre guerras e conflitos reais.">
+<meta name="description" content="Atmos IPTV P2P • A melhor lista de canais, filmes e séries em um só lugar. TV por assinatura e TV Box com teste grátis.">
+<meta property="og:title" content="Atmos IPTV • GeoFilmes">
+<meta property="og:description" content="Catálogo curado de filmes, séries e documentários sobre conflitos reais. Disponível na Atmos IPTV.">
 <meta property="og:type" content="website">
 
-<title>GeoFilmes • Conflitos Reais</title>
+<title>Atmos IPTV • GeoFilmes | Conflitos Reais</title>
 
 <style>
 /* ===== RESET & BASE ===== */
@@ -32,6 +32,16 @@ header {
   z-index: 100;
 }
 header h1 { margin: 0 0 8px; font-size: 28px; }
+header .brand-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #000;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 header p { margin: 0 0 12px; opacity: 0.9; }
 #search {
   padding: 12px 16px;
@@ -144,7 +154,7 @@ nav button:focus {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: none; /* Ativar quando tiver imagens reais */
+  display: none;
 }
 .card-poster .placeholder-text {
   font-weight: bold;
@@ -219,7 +229,7 @@ nav button:focus {
   margin: 0;
 }
 
-/* Similar movies section inside card */
+/* Similar movies section */
 .card-similar {
   margin-top: 12px;
   padding-top: 12px;
@@ -268,12 +278,25 @@ nav button:focus {
   border-top: 1px solid #1e293b;
   margin-top: 40px;
   border-radius: 12px;
+  border: 2px solid #38bdf8;
 }
 .promo-section h2 { color: #38bdf8; margin: 0 0 12px; }
+.promo-section .brand-highlight {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
 .promo-section p { margin: 8px 0; opacity: 0.9; }
+.promo-section .price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fbbf24;
+  margin: 10px 0;
+}
 .promo-btn {
   display: inline-block;
-  padding: 12px 20px;
+  padding: 12px 24px;
   background: #25D366;
   color: #000;
   font-weight: bold;
@@ -281,6 +304,7 @@ nav button:focus {
   text-decoration: none;
   margin-top: 12px;
   transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 14px;
 }
 .promo-btn:hover {
   transform: translateY(-2px);
@@ -343,6 +367,24 @@ nav button:focus {
   opacity: 1;
 }
 
+/* ===== DISTRIBUTOR BADGE ===== */
+.distributor-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid #25D366;
+  color: #25D366;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin: 10px 0;
+}
+.distributor-badge::before {
+  content: "✓";
+  font-weight: bold;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
   header h1 { font-size: 24px; }
@@ -362,14 +404,27 @@ nav button:focus {
   overflow: hidden; clip: rect(0,0,0,0);
   white-space: nowrap; border: 0;
 }
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+  font-size: 12px;
+  border-top: 1px solid #1e293b;
+  margin-top: 40px;
+}
+footer a { color: #38bdf8; text-decoration: none; }
 </style>
 </head>
 
 <body>
 
 <header>
+  <span class="brand-badge">📡 Atmos IPTV P2P</span>
   <h1>🌍 GeoFilmes</h1>
   <p>Histórias reais. Conflitos reais. Sem filtro.</p>
+  <div class="distributor-badge">Atendimento direto com distribuidor</div>
   <input type="text" id="search" placeholder="Buscar por título, conflito, tag..." aria-label="Buscar filmes">
 </header>
 
@@ -399,15 +454,15 @@ nav button:focus {
         <span>•</span>
         <span>Série</span>
       </div>
-      <p class="card-desc">Equipe de forças especiais israelense opera disfarçada em território palestino. Ação intensa baseada em relatos reais do criador da série.</p>
+      <p class="card-desc">Equipe de forças especiais israelense opera disfarçada em território palestino. Ação intensa baseada em relatos reais.</p>
       <div class="card-tags">
         <span class="tag">Ação</span>
         <span class="tag">Espionagem</span>
         <span class="tag">Oriente Médio</span>
       </div>
-      <a href="#" class="stream tooltip" aria-label="Assistir na Netflix">
-        Netflix
-        <span class="tooltip-text">Disponível na Netflix • Dublado e legendado</span>
+      <a href="#" class="stream tooltip" aria-label="Assistir na Atmos IPTV">
+        Atmos IPTV
+        <span class="tooltip-text">Disponível na Atmos IPTV • Dublado e legendado • Teste grátis</span>
       </a>
       <div class="card-similar" id="similar-fauda">
         <h4>Quem viu também gostou:</h4>
@@ -431,9 +486,9 @@ nav button:focus {
         <span class="tag">Militar</span>
         <span class="tag">Baseado em fatos</span>
       </div>
-      <a href="#" class="stream tooltip" aria-label="Assistir na HBO">
-        HBO
-        <span class="tooltip-text">Disponível na HBO Max • Legendado</span>
+      <a href="#" class="stream tooltip" aria-label="Assistir na Atmos IPTV">
+        Atmos IPTV
+        <span class="tooltip-text">Disponível na Atmos IPTV • Legendado • Teste grátis</span>
       </a>
       <div class="card-similar" id="similar-generation-kill">
         <h4>Quem viu também gostou:</h4>
@@ -481,10 +536,10 @@ nav button:focus {
   </div>
 
   <!-- 🎬 Catálogo Principal -->
-  <h2 class="section-title">🎬 Catálogo Completo</h2>
+  <h2 class="section-title">🎬 Catálogo Atmos IPTV</h2>
   <div class="grid" id="filmGrid">
 
-    <!-- Fauda (mantido + enriquecido) -->
+    <!-- Fauda -->
     <div class="card serie israel" data-id="fauda-01" data-tags="israel ação espionagem conflito-real 2010s" data-year="2015" data-rating="8.4" data-similar="generation-kill,zero-dark-thirty">
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Fauda</h3>
@@ -495,17 +550,17 @@ nav button:focus {
         <span>•</span>
         <span>Série</span>
       </div>
-      <p class="card-desc">Equipe de forças especiais israelense opera disfarçada em território palestino. Ação intensa baseada em relatos reais do criador da série.</p>
+      <p class="card-desc">Equipe de forças especiais israelense opera disfarçada em território palestino. Ação intensa baseada em relatos reais.</p>
       <div class="card-tags">
         <span class="tag">Série</span>
         <span class="tag">Ação</span>
         <span class="tag">Oriente Médio</span>
       </div>
-      <a href="#" class="stream">Netflix</a>
+      <a href="#" class="stream">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
-    <!-- Generation Kill (mantido + enriquecido) -->
+    <!-- Generation Kill -->
     <div class="card serie iraque" data-id="gen-kill-01" data-tags="iraque guerra militar 2000s baseado-em-fatos" data-year="2008" data-rating="8.6" data-similar="fauda,green-zone,hurt-locker">
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Generation Kill</h3>
@@ -522,11 +577,11 @@ nav button:focus {
         <span class="tag">Guerra</span>
         <span class="tag">HBO</span>
       </div>
-      <a href="#" class="stream">HBO</a>
+      <a href="#" class="stream">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
-    <!-- For Sama (mantido + enriquecido) -->
+    <!-- For Sama -->
     <div class="card documentario siria" data-id="for-sama-01" data-tags="siria documentario guerra-civil premio 2010s" data-year="2019" data-rating="8.5" data-similar="last-men-aleppo,caves-of-forgetting">
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>For Sama</h3>
@@ -543,11 +598,11 @@ nav button:focus {
         <span class="tag">Síria</span>
         <span class="tag">Premiado</span>
       </div>
-      <a href="#" class="stream">Prime</a>
+      <a href="#" class="stream">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
-    <!-- Guerra de Canudos (mantido + enriquecido) -->
+    <!-- Guerra de Canudos -->
     <div class="card filme brasil" data-id="canudos-01" data-tags="brasil historia conflito-social 1990s baseado-em-livro" data-year="1997" data-rating="7.2" data-similar="batismo-sangue,abraco-partido">
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Guerra de Canudos</h3>
@@ -564,11 +619,11 @@ nav button:focus {
         <span class="tag">Histórico</span>
         <span class="tag">Drama</span>
       </div>
-      <!-- Sem streaming definido, mantido como original -->
+      <a href="#" class="stream">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
-    <!-- Gladiador (mantido + enriquecido) -->
+    <!-- Gladiador -->
     <div class="card filme guerra" data-id="gladiator-01" data-tags="roma historico epico ação 2000s premio" data-year="2000" data-rating="8.5" data-similar="troia,300,kingdom-of-heaven">
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Gladiador</h3>
@@ -585,11 +640,11 @@ nav button:focus {
         <span class="tag">Épico</span>
         <span class="tag">Ação</span>
       </div>
-      <!-- Sem streaming definido, mantido como original -->
+      <a href="#" class="stream">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
-    <!-- NOVOS: Adicionados para demonstrar sistema de recomendação -->
+    <!-- Green Zone -->
     <div class="card filme iraque" data-id="green-zone-01" data-tags="iraque guerra ação 2010s baseado-em-fatos" data-year="2010" data-rating="7.0" data-similar="generation-kill,hurt-locker,body-of-lies">
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Green Zone</h3>
@@ -606,10 +661,11 @@ nav button:focus {
         <span class="tag">Iraque</span>
         <span class="tag">Thriller</span>
       </div>
-      <a href="#" class="stream">Netflix</a>
+      <a href="#" class="stream">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
+    <!-- Batismo de Sangue -->
     <div class="card documentario brasil" data-id="batismo-01" data-tags="brasil ditadura documentario resistencia 2000s" data-year="2007" data-rating="7.8" data-similar="abraco-partido,juiz">
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Batismo de Sangue</h3>
@@ -626,10 +682,11 @@ nav button:focus {
         <span class="tag">Ditadura</span>
         <span class="tag">Drama</span>
       </div>
-      <a href="#" class="stream">Prime</a>
+      <a href="#" class="stream">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
+    <!-- Last Men in Aleppo -->
     <div class="card filme siria" data-id="last-men-01" data-tags="siria documentario guerra-civil 2010s premio" data-year="2018" data-rating="8.1" data-similar="for-sama,caves-of-forgetting">
       <div class="card-poster"><span class="placeholder-text">🎬</span></div>
       <h3>Last Men in Aleppo</h3>
@@ -646,41 +703,60 @@ nav button:focus {
         <span class="tag">Síria</span>
         <span class="tag">Heroísmo</span>
       </div>
-      <a href="#" class="stream">Prime</a>
+      <a href="#" class="stream">Atmos IPTV</a>
       <div class="card-similar"><h4>Similar:</h4><div class="similar-list"></div></div>
     </div>
 
   </div>
 
-  <!-- Estado vazio (oculto por padrão) -->
+  <!-- Estado vazio -->
   <div id="emptyState" class="empty-state hidden" role="status" aria-live="polite">
     <div class="icon">🔍</div>
-    <p><strong>Nada encontrado</strong></p>
+    <p><strong>Nada encontrado na Atmos IPTV</strong></p>
     <p style="font-size:13px;margin-top:5px">Tente outros termos ou remova os filtros.</p>
   </div>
 
 </div>
 
-<!-- PROPAGANDA / PROMO -->
+<!-- PROMOÇÃO ATMOS IPTV -->
 <div class="promo-section">
-  <h2 style="color:#38bdf8;">💆‍♂️ Relaxamento Total</h2>
-  <p>💰 Apenas R$30/mês<br>🎁 Teste grátis por 6 horas</p>
-  <a href="https://wa.me/5597991916621?text=Olá,%20vim%20pelo%20site%20GeoFilmes%20e%20quero%20testar%20o%20serviço"
+  <h2>📡 <span class="brand-highlight">Atmos IPTV P2P</span></h2>
+  <p style="font-size:16px">✅ A melhor lista de canais, filmes e séries em um só lugar</p>
+  <p class="price">💰 Apenas R$30/mês</p>
+  <p>🎁 <strong>Teste IPTV grátis</strong> • Suporte 24/7 • TV Box compatível</p>
+  <a href="https://wa.me/5597991916621?text=Olá,%20vim%20pelo%20site%20GeoFilmes%20e%20quero%20testar%20o%20serviço%20Atmos%20IPTV"
      target="_blank" rel="noopener noreferrer"
-     class="promo-btn" aria-label="Falar no WhatsApp para testar o serviço">
-     📲 Falar no WhatsApp
+     class="promo-btn" aria-label="Solicitar teste grátis da Atmos IPTV no WhatsApp">
+     🎬 Quero meu teste grátis
   </a>
+  <p style="font-size:11px;margin-top:15px;opacity:0.7">Atendimento direto: (97) 99191-6621</p>
 </div>
 
 <!-- BOTÃO FLUTUANTE WHATSAPP -->
-<a href="https://wa.me/5597991916621?text=Olá,%20quero%20testar%20o%20serviço"
+<a href="https://wa.me/5597991916621?text=Olá,%20quero%20saber%20mais%20sobre%20a%20Atmos%20IPTV"
    class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp">
    💬 WhatsApp
 </a>
 
+<!-- FOOTER -->
+<footer>
+  <p>📡 Atmos IPTV P2P • Distribuidor autorizado</p>
+  <p style="margin-top:5px">Contato: <strong>(97) 99191-6621</strong></p>
+  <p style="margin-top:10px;font-size:11px">
+    Este catálogo é mantido por um distribuidor independente. 
+    <br>Marcas e conteúdos pertencem aos respectivos proprietários.
+  </p>
+</footer>
+
 <!-- SCRIPT PRINCIPAL -->
 <script>
-// ===== DADOS CENTRALIZADOS (fácil manutenção) =====
+// ===== CONFIGURAÇÃO DO DISTRIBUIDOR (EDITE AQUI) =====
+const DISTRIBUIDOR = {
+  whatsapp: "5597991916621", // Seu número - formato internacional sem + ou espaços
+  mensagemPadrao: "Olá, vim pelo site GeoFilmes e quero saber sobre a Atmos IPTV"
+};
+
+// ===== CATÁLOGO DE DADOS (para recomendações) =====
 const catalogData = {
   "fauda-01": { titulo: "Fauda", tags: ["israel","ação","espionagem","conflito-real","2010s"] },
   "generation-kill": { titulo: "Generation Kill", tags: ["iraque","guerra","militar","2000s","baseado-em-fatos"] },
@@ -702,7 +778,6 @@ const catalogData = {
 };
 
 // ===== FUNÇÕES DE UTILIDADE =====
-// Normaliza texto para busca (remove acentos, minúsculas)
 function normalizeText(text) {
   return text.toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -711,19 +786,19 @@ function normalizeText(text) {
 
 // ===== FILTRO POR CATEGORIA =====
 function filterSelection(category) {
-  // Atualiza botões ativos
   document.querySelectorAll('nav button').forEach(btn => {
     btn.classList.remove('active');
     btn.setAttribute('aria-pressed', 'false');
   });
-  event.target.classList.add('active');
-  event.target.setAttribute('aria-pressed', 'true');
+  if (event?.target) {
+    event.target.classList.add('active');
+    event.target.setAttribute('aria-pressed', 'true');
+  }
 
   const cards = document.querySelectorAll('.card');
   let visibleCount = 0;
 
   cards.forEach(card => {
-    // Cards de "Top por Conflito" não têm data-tags, sempre mostram
     if (!card.dataset.tags) {
       card.classList.remove('hidden');
       visibleCount++;
@@ -741,18 +816,17 @@ function filterSelection(category) {
     }
   });
 
-  // Mostra/oculta estado vazio
   toggleEmptyState(visibleCount);
 }
 
-// ===== BUSCA EM TEMPO REAL =====
+// ===== BUSCA INTELIGENTE =====
 document.getElementById('search').addEventListener('keyup', function() {
   const query = normalizeText(this.value);
   const cards = document.querySelectorAll('#filmGrid .card');
   let visibleCount = 0;
 
   cards.forEach(card => {
-    if (!card.dataset.id) return; // Pula cards que não são do catálogo principal
+    if (!card.dataset.id) return;
 
     const searchable = normalizeText(
       card.querySelector('h3')?.textContent + ' ' +
@@ -786,7 +860,7 @@ function toggleEmptyState(count) {
   }
 }
 
-// ===== SISTEMA DE RECOMENDAÇÃO SIMPLES =====
+// ===== SISTEMA DE RECOMENDAÇÃO =====
 function loadSimilarMovies() {
   document.querySelectorAll('.card[data-id]').forEach(card => {
     const similarContainer = card.querySelector('.similar-list');
@@ -800,10 +874,9 @@ function loadSimilarMovies() {
         const btn = document.createElement('span');
         btn.className = 'similar-item';
         btn.textContent = simData.titulo;
-        btn.title = `Ver ${simData.titulo}`;
+        btn.title = `Ver ${simData.titulo} na Atmos IPTV`;
         btn.onclick = (e) => {
           e.preventDefault();
-          // Destaca o card similar (scroll suave)
           const target = document.querySelector(`.card[data-id="${simId}"]`);
           if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -821,12 +894,28 @@ function loadSimilarMovies() {
   });
 }
 
+// ===== ATUALIZAR LINKS DO WHATSAPP CENTRALIZADO =====
+function updateWhatsAppLinks() {
+  const encodedMsg = encodeURIComponent(DISTRIBUIDOR.mensagemPadrao);
+  const waBase = `https://wa.me/${DISTRIBUIDOR.whatsapp}?text=`;
+  
+  // Atualiza todos os links WhatsApp
+  document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+    if (link.href.includes('text=')) {
+      link.href = waBase + encodedMsg;
+    }
+  });
+}
+
 // ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', () => {
-  // Carrega recomendações
+  // Atualiza links do WhatsApp com número e mensagem do distribuidor
+  updateWhatsAppLinks();
+  
+  // Carrega sistema de recomendação
   loadSimilarMovies();
   
-  // Acessibilidade: navegação por teclado nos filtros
+  // Acessibilidade: navegação por teclado
   document.querySelectorAll('nav button').forEach(btn => {
     btn.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
@@ -836,20 +925,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Feedback visual no search
+  // Feedback no search
   const searchInput = document.getElementById('search');
   searchInput.addEventListener('focus', () => {
-    searchInput.placeholder = 'Ex: Iraque, documentário, 2010s...';
+    searchInput.placeholder = 'Ex: Iraque, documentário, 2010s, ação...';
   });
   searchInput.addEventListener('blur', () => {
     searchInput.placeholder = 'Buscar por título, conflito, tag...';
   });
 });
-
-// ===== SERVICE WORKER PLACEHOLDER (para PWA futuro) =====
-// if ('serviceWorker' in navigator) {
-//   navigator.serviceWorker.register('/sw.js').catch(console.error);
-// }
 </script>
 
 </body>
